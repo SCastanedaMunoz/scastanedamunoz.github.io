@@ -29,6 +29,11 @@ permalink: /
   .tabs button{background:var(--surface); border:1px solid var(--line); color:var(--mut); font-family:"Sora",sans-serif; font-weight:600; font-size:14px; padding:8px 20px; border-radius:9px; cursor:pointer}
   .tabs button.active{background:color-mix(in srgb,var(--accent) 16%,transparent); border-color:var(--line-strong); color:var(--accent)}
   .tabpanel[hidden]{display:none}
+  .dtable{margin-top:12px; font-size:13px}
+  .dtable summary{cursor:pointer; color:var(--accent-2)}
+  .dtable table{margin-top:10px; border-collapse:collapse; width:auto}
+  .dtable th,.dtable td{border:1px solid var(--line); padding:3px 12px; text-align:left; color:var(--mut)}
+  .dtable th{color:var(--ink)}
   .treemap{position:relative; width:100%; height:360px; margin-top:4px; border-radius:10px; overflow:visible}
   .treemap .tile{position:absolute; overflow:hidden; border-radius:5px; box-sizing:border-box; padding:6px 8px; transition:filter .12s}
   .treemap .tile:hover{filter:brightness(1.08)}
@@ -52,6 +57,7 @@ permalink: /
       <p class="pitch">I build cross-platform, cross-language SDKs — and the AI-powered developer tooling that keeps them reliable. Today I own the Unity layer of a production ad-mediation platform shipped in lockstep across Unity, iOS, and Android, and used from independent studios to industry leaders like Zynga.</p>
       <div class="cta">
         <a class="btn primary" href="{{ '/projects/' | relative_url }}">View Projects →</a>
+        <a class="btn ghost" href="{{ '/resume/' | relative_url }}">Résumé</a>
         <a class="btn ghost" href="https://github.com/SCastanedaMunoz" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg> GitHub</a>
         <a class="btn ghost" href="https://www.linkedin.com/in/santiagocastanedamunoz/" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> LinkedIn</a>
       </div>
@@ -127,6 +133,11 @@ permalink: /
         <div id="npm-tree" class="treemap"></div>
         <div class="tmlegend"><span><i style="background:#f6c445"></i>Mediation SDK</span><span><i style="background:#db7a2a"></i>Ad-network adapter</span><span style="margin-left:auto">Tile area = downloads · hover for detail</span></div>
         <p class="src">All-time npm downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add {{ site.data.adoption.npm_extras_display }} more across 9 packages.</p>
+        <details class="dtable"><summary>Show data table</summary>
+          <table><thead><tr><th>Package</th><th>npm downloads (all-time)</th></tr></thead><tbody>
+          {% for row in site.data.adoption.npm_tree %}<tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td></tr>{% endfor %}
+          </tbody></table>
+        </details>
       </figure>
     </div>
 
@@ -136,6 +147,11 @@ permalink: /
         <div id="nuget-tree" class="treemap"></div>
         <div class="tmlegend"><span><i style="background:#f6c445"></i>Mediation SDK</span><span><i style="background:#db7a2a"></i>Ad-network adapter</span><span style="margin-left:auto">Tile area = downloads · hover for detail</span></div>
         <p class="src">All-time NuGet downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add {{ site.data.adoption.nuget_extras_display }} more across 9 packages.</p>
+        <details class="dtable"><summary>Show data table</summary>
+          <table><thead><tr><th>Package</th><th>NuGet downloads (all-time)</th></tr></thead><tbody>
+          {% for row in site.data.adoption.nuget_tree %}<tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td></tr>{% endfor %}
+          </tbody></table>
+        </details>
       </figure>
     </div>
   </div>
@@ -173,9 +189,11 @@ permalink: /
         <p style="color:var(--mut); margin-top:12px"><span class="kw">Shipped titles I contributed to:</span></p>
         <div class="titles">
           <figure><img src="{{ '/assets/images/experience/spongebob.png' | relative_url }}" alt="SpongeBob: Krusty Cook-Off"><figcaption>SpongeBob<br>Krusty Cook-Off</figcaption></figure>
+          <figure><img src="{{ '/assets/images/experience/warhammer.png' | relative_url }}" alt="Warhammer: Chaos &amp; Conquest"><figcaption>Warhammer<br>Chaos &amp; Conquest</figcaption></figure>
           <figure><img src="{{ '/assets/images/experience/terragenesis.png' | relative_url }}" alt="TerraGenesis"><figcaption>TerraGenesis</figcaption></figure>
           <figure><img src="{{ '/assets/images/experience/zombieland.png' | relative_url }}" alt="Zombieland: AFK Survival"><figcaption>Zombieland<br>AFK Survival</figcaption></figure>
           <figure><img src="{{ '/assets/images/experience/languinis.png' | relative_url }}" alt="Languinis"><figcaption>Languinis</figcaption></figure>
+          <figure><img src="{{ '/assets/images/experience/mms.png' | relative_url }}" alt="M&amp;M's Adventure"><figcaption>M&amp;M's<br>Adventure</figcaption></figure>
           <figure><img src="{{ '/assets/images/experience/landfall.png' | relative_url }}" alt="TerraGenesis: Landfall"><figcaption>TerraGenesis<br>Landfall</figcaption></figure>
         </div>
         <div class="trailers">
@@ -183,7 +201,7 @@ permalink: /
           <div class="v"><iframe src="https://www.youtube.com/embed/dPyyDXc3hFs" title="TerraGenesis 5.0 Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
           <div class="v"><iframe src="https://www.youtube.com/embed/X8D6mTx_UaI" title="Zombieland AFK Survival" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         </div>
-        <p style="color:var(--mut); margin-top:14px">Additional shipped titles include Warhammer: Chaos &amp; Conquest, Sneaker Craft, and M&amp;M's Adventure. <span class="kw">TerraGenesis: Landfall</span> was additional contractor work — I helped bring it to release and industry standards.</p>
+        <p style="color:var(--mut); margin-top:14px">Also shipped Sneaker Craft. <span class="kw">TerraGenesis and TerraGenesis: Landfall</span> were Tilting Point titles I additionally took on as contractor work — client and store/monetization engineering to help both games hit their release goals.</p>
       </div>
     </div>
   </div>

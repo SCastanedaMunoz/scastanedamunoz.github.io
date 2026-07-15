@@ -1,0 +1,59 @@
+---
+layout: base
+title: "A cross-platform end-to-end test framework on real devices"
+permalink: /writing/e2e-automation/
+mermaid: true
+description: "Turning manual, flaky SDK QA into trustworthy release signal with Maestro flows, real-device execution on BrowserStack, and unified TestRail/Allure reporting."
+---
+
+<section class="block">
+  <div class="wrap article prose">
+    <a class="back" href="{{ '/writing/' | relative_url }}">← Writing</a>
+    <div class="kicker" style="margin-top:16px">Test Automation</div>
+    <h2>A cross-platform end-to-end test framework on real devices</h2>
+    <div class="meta">Chartboost · Unity / iOS / Android SDK release pipeline</div>
+
+    <p>An ad-mediation SDK only earns trust if it behaves correctly on real hardware, across platforms, ad formats, and a shifting set of network adapters. Manual QA for that matrix doesn't scale and isn't repeatable. I designed and built a cross-platform end-to-end automation framework that runs the real SDK on real devices and produces a signal I'm willing to gate a release on.</p>
+
+    <p>What makes it interesting is that it's <strong>bespoke by necessity</strong>. In a Unity title, the ad SDK and its native plugins take over Unity's focus and control — fullscreen ads, banners, and consent flows render on native surfaces that live <em>outside</em> the engine. Unity's own automation can't see or drive them, so off-the-shelf in-engine testing can't validate the integration at all. This harness had to operate at the <strong>device / OS level</strong>, exercising the real app exactly as players — and those native plugins — actually behave.</p>
+
+    <h3>The problem</h3>
+    <ul>
+      <li><strong>The Unity ↔ native-plugin gap</strong> — ad surfaces seize Unity's focus and input, so in-engine test hooks are blind to the very behavior under test; automation has to drive the device, not the engine.</li>
+      <li>A large behavior matrix: platforms × ad formats (fullscreen, banner, rewarded) × adapters × callbacks.</li>
+      <li>Manual runs were slow, non-repeatable, and flaky — failures were hard to attribute.</li>
+      <li>No single place to see "is the SDK healthy right now?" before shipping.</li>
+    </ul>
+
+    <h3>The pipeline</h3>
+    <p>Tests are authored once as <strong>Maestro</strong> flows — device-level UI automation that drives the real OS, not Unity internals, which is exactly what lets it reach the native plugin surfaces — and driven through a generation pipeline that expands them across platforms and configurations. They execute on <strong>BrowserStack</strong> real devices in CI, and results flow into a single reporting surface: <strong>TestRail</strong> as the source of truth for cases and <strong>Allure</strong> for a unified, trend-aware report, with screenshots archived to S3 and a distilled summary pinged to Slack.</p>
+
+    <pre class="mermaid">
+flowchart TB
+  DEF[Test definitions<br/>single source] --> GEN[Generate-flows<br/>pipeline]
+  GEN --> MAE[Maestro flows]
+  MAE --> BS[BrowserStack<br/>real devices]
+  BS --> RES[Results + screenshots]
+  RES --> TR[(TestRail<br/>case status)]
+  RES --> AL[Allure unified<br/>report + trends]
+  RES --> S3[(S3 screenshot<br/>archive)]
+  AL --> SLK[Slack summary]
+  TR --> SLK
+    </pre>
+
+    <h3>Making the signal trustworthy</h3>
+    <ul>
+      <li><strong>Single-source authoring.</strong> Cases are written once and synced to TestRail, so the report and the test definitions never drift.</li>
+      <li><strong>Assertion depth.</strong> Flows assert real behavior — click-through callbacks, rewarded rewards, banner visibility and placement, session/observability markers — not just "did the app launch".</li>
+      <li><strong>Flake control.</strong> A quarantine lane isolates unstable tests so they inform without blocking; stabilized tests graduate back into the gate.</li>
+      <li><strong>Right-sized CI.</strong> PR-smoke runs just the changed tests; nightly runs the full matrix and publishes the unified report.</li>
+    </ul>
+
+    <h3>Wired into the release gate</h3>
+    <p>The framework isn't a side project — it sits in the same CI as the team's <a href="{{ '/writing/sdk-ai-tooling/' | relative_url }}">AI-assisted review tooling</a>, so correctness and code-quality signal arrive together, before merge and before release.</p>
+
+    <div class="callout"><span class="n">Outcome</span> — repeatable, real-device coverage across the SDK family; a single Allure/TestRail report as the health check before every release; and dramatically less manual QA toil.</div>
+
+    <div class="tags" style="margin-top:20px"><span>Maestro E2E</span><span>BrowserStack</span><span>TestRail</span><span>Allure</span><span>GitHub Actions</span><span>AWS S3</span></div>
+  </div>
+</section>

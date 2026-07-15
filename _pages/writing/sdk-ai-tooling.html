@@ -1,0 +1,41 @@
+---
+layout: base
+title: "AI tooling I built for a cross-platform SDK pipeline"
+permalink: /writing/sdk-ai-tooling/
+description: "The AI-assisted developer tooling I authored inside a large cross-platform SDK monorepo — release automation, LLM-assisted test authoring, project-context grounding, and review-workflow guardrails."
+---
+
+<section class="block">
+  <div class="wrap article prose">
+    <a class="back" href="{{ '/writing/' | relative_url }}">← Writing</a>
+    <div class="kicker" style="margin-top:16px">AI Dev Tooling · CI/CD</div>
+    <h2>AI tooling I built for a cross-platform SDK pipeline</h2>
+    <div class="meta">Chartboost · Unity / iOS / Android SDK monorepo (team effort)</div>
+
+    <p>Our SDK team leans on LLM tooling daily as part of its CI and release workflow. That platform is a team effort; below are the pieces I personally authored and own — the automation and guardrails that made the AI parts dependable and lowered day-to-day toil. I've scoped this deliberately to my own contributions.</p>
+
+    <h3>Release automation as a skill</h3>
+    <p>Releasing across an ecosystem of 20+ ad-network adapters is repetitive and error-prone. I built a <strong><code>/release-adapter</code> skill</strong> — a single-command driver that releases one adapter end to end — turning a fiddly manual checklist into a repeatable, one-line operation.</p>
+
+    <h3>LLM-assisted test authoring</h3>
+    <p>Authoring test content by hand doesn't keep up with the SDK's surface. I worked on the <strong>headless LLM authoring</strong> path in the automation pipeline — generating test content programmatically — and made it robust in CI, including <strong>surfacing the model's error</strong> clearly when headless authoring fails instead of letting the run die silently.</p>
+
+    <h3>Grounding the AI in our standards</h3>
+    <p>Generic AI feedback isn't useful on a large, opinionated codebase. I added <strong>Claude Code project-context documentation</strong> to the monorepo — architecture, conventions, and the public API contract — so any AI tooling operating on the repo is grounded in <em>our</em> standards rather than defaults.</p>
+
+    <h3>Guardrails around the review workflow</h3>
+    <p>The team runs an automated review step in CI. I built the ergonomics and safety valves around it so it stays useful and never becomes a hostage situation:</p>
+    <ul>
+      <li><code>/skip-ai-review</code> — a deliberate, audited bypass for when a human overrides the model.</li>
+      <li><code>/re-review</code> — re-run cleanly after pushing fixes; I also fixed the case where <code>/skip-ai-review</code> and <code>/re-review</code> could cancel each other out.</li>
+      <li>Gating the check via a deployment environment so it's authoritative but configurable per repo.</li>
+      <li><strong>Synthesizing failing checks</strong> so a rejection surfaces its reason in the PR status instead of being buried in logs.</li>
+    </ul>
+
+    <div class="callout"><span class="n">Principle</span> — treat the model as a scriptable CI participant, not a chat window: give it grounded context, wrap it in explicit human-controlled guardrails, and automate the toil around it. That's what makes AI tooling something a team can rely on every day.</div>
+
+    <p style="margin-top:16px">I explore the same ideas from scratch, and fully solo, in <a href="{{ '/writing/ai-engine-harness/' | relative_url }}">my C++ engine's agent harness</a>.</p>
+
+    <div class="tags" style="margin-top:14px"><span>Claude / Claude Code</span><span>Skill authoring</span><span>GitHub Actions</span><span>Release automation</span><span>Developer tooling</span></div>
+  </div>
+</section>

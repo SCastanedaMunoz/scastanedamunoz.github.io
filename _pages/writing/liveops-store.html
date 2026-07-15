@@ -1,0 +1,74 @@
+---
+layout: base
+title: "Building a config-driven live-ops store for a shipped game"
+permalink: /writing/liveops-store/
+mermaid: true
+description: "How I designed the store and economy for TerraGenesis: Landfall so merchandising — deals, sales, bundles, pricing — is data a designer edits and a server can retune, not code that ships in an app update."
+---
+
+<section class="block">
+  <div class="wrap article prose">
+    <a class="back" href="{{ '/writing/' | relative_url }}">← Writing</a>
+    <div class="kicker" style="margin-top:16px">Game Economy · Live-Ops</div>
+    <h2>Building a config-driven live-ops store for a shipped game</h2>
+    <div class="meta">TerraGenesis: Landfall · contract work · 2022</div>
+
+    <p>A live mobile game's economy is never finished. Prices get retuned, new bundles launch for an event, a limited-time deal runs for a weekend, a starter pack targets new players. The one thing you can't do is ship an app-store build every time the economy changes — review latency alone would kill live-ops. So the real design problem for a store isn't the buy button; it's making <strong>merchandising into data</strong>: something a designer edits in the inspector and a server can override, with the client as a dumb, reliable renderer. That's the store and economy system I built as contract work on <em>TerraGenesis: Landfall</em>.</p>
+
+    <p>Worth noting <em>when</em> this was built — <strong>2022</strong>. Turnkey live-ops economy platforms weren't the norm yet, and Unity had not shipped a mature first-party equivalent — its own economy and remote-config services were only just beginning to appear and were nowhere near a standard, drop-in solution. A data-driven store you could retune from a server was something you <em>architected and built yourself</em>, which is exactly what this is.</p>
+
+    <h3>The data model: a store you author, not code</h3>
+    <p>Everything the store shows is described by a <code>StoreConfig</code> ScriptableObject — an array of <code>StoreCategory</code> and an array of <code>StoreItem</code>, authored entirely in Unity's inspector. A <code>StoreItem</code> is the unit of merchandising: a product id, the store <code>SKU</code> (identical across the Apple and Play stores), a Unity IAP <code>ProductType</code>, a display <code>Order</code> weight, a category, localization keys, and its contents. Its payload is a list of <code>StoreItemContent</code> — a typed reward (hard currency, soft currency, gear, a city bundle, or a link) with an amount. One content is a simple product; more than one makes it a bundle. Adding a new offer means editing an asset, not writing code.</p>
+
+    <h3>Pricing that adapts to the player</h3>
+    <p>Cost isn't a single number. Each item carries a small ladder — a <em>free</em> amount, an <em>ads</em> amount, then a real cost — and the runtime picks the current price from how many times the player has already bought it:</p>
+    <ul>
+      <li>The first <em>N</em> pulls are <strong>free</strong>.</li>
+      <li>The next <em>M</em> are unlocked by <strong>watching a rewarded ad</strong>.</li>
+      <li>After that it falls back to the <strong>real cost</strong> (soft currency, hard currency, or cash).</li>
+    </ul>
+    <p>That whole priority order — <em>free → ads → cost</em> — lives in one computed property, evaluated against a per-day or all-time purchase count depending on the item's recurrence. A "daily" item resets its counter each day, so the same asset can be a free daily reward and a paid impulse buy without any special-casing at the call site.</p>
+
+    <h3>Time-boxed offers: expiration and reappearance</h3>
+    <p>Limited-time deals need two clocks. An item's <code>expirationDuration</code> defines how long it stays live once a player first sees it; the store computes an expiration timestamp from that first-seen date and renders a live <code>HH:MM:SS</code> countdown, hiding the item once it lapses. A second value, <code>expirationReappearance</code>, controls when a featured deal <em>comes back</em> after expiring — so a weekend offer can cycle without a designer babysitting it. Deals surface in a stable, FIFO order so the merchandising feels intentional rather than random.</p>
+
+    <h3>Contextual triggers, not just a storefront</h3>
+    <p>The highest-converting offers aren't in the store tab — they meet the player in the moment. So the same data model drives popups with real triggers:</p>
+    <ul>
+      <li><strong>Starter pack</strong> — a one-time new-player offer that only becomes available <em>after the tutorial is finished</em>, so it lands when the player understands what it's worth.</li>
+      <li><strong>Resupply pack</strong> — a contextual "you're running low" offer, gated on tutorial completion and a cooldown since the last pack, and designed to trigger from player state (low resources on hand). Unlike a one-shot deal, it's explicitly allowed to re-show across sessions.</li>
+      <li><strong>Purchasable city bundles</strong> — surfaced right from the planet info panel, so the offer appears at the exact point the player is looking at the thing they'd be buying.</li>
+    </ul>
+
+    <h3>Built for server-side live-ops</h3>
+    <p>The point of making the store data-driven is that data can come from a server. Every <code>StoreItem</code> implements the game's <code>ILeanplumVariables</code> contract, and each field — enabled flag, contents, SKU, cost, duration, reappearance — has a path to be overridden from Leanplum. <code>StoreItemContent</code> encodes to and from a compact string form (e.g. <code>gp.500</code>, <code>gear.Steel.2</code>, <code>cb.&lt;bundle&gt;.1</code>) precisely so a whole reward payload can round-trip through a remote-config value. The result: pricing and bundles can be A/B tested and retuned from a dashboard, without a build.</p>
+    <p>Underneath, a <code>PurchaseController</code> ScriptableObject owns the runtime: it initializes the Tilting Point SDK purchaser and Unity IAP from the item list, maps each SKU to a single <code>CrossPlatformProduct</code> with matching iOS/Android ids, and raises one <code>OnPurchaseProduct</code> event carrying a result code. When the store is built for display, it filters items by availability, scene, and purchase limits, drops empty categories, and sorts everything by the <code>Order</code> weight — so the UI never has to know the rules.</p>
+
+    <h3>The shape of it</h3>
+    <pre class="mermaid">
+flowchart TB
+  CFG[StoreConfig ScriptableObject<br/>categories + items · designer-authored]
+  LP[Leanplum remote overrides<br/>cost · contents · SKU · timers]
+  CFG --> PC
+  LP -.override.-> PC
+  PC[PurchaseController<br/>init IAP · filter by availability / scene / limits · sort by Order]
+  PC --> UI[Store UI]
+  PC --> POP[Contextual popups<br/>starter · resupply · featured deal]
+  UI --> BUY[Purchase]
+  POP --> BUY
+  BUY --> IAP[TP SDK Purchaser · Unity IAP<br/>one SKU → iOS + Android]
+  IAP --> REW[Reward delivery<br/>currency · gear · city bundle]
+    </pre>
+
+    <h3>Why it's built this way</h3>
+    <ul>
+      <li><strong>Merchandising is data.</strong> Designers ship new deals, bundles, and prices by editing assets and, ultimately, remote config — the client binary doesn't change.</li>
+      <li><strong>Rules live in the model, not the UI.</strong> Availability, pricing ladders, limits, and expiration are properties of the item; the store view just renders what it's handed.</li>
+      <li><strong>One SKU, both stores.</strong> Cross-platform product mapping and a single purchase event keep the buy path identical on iOS and Android.</li>
+    </ul>
+
+    <div class="callout"><span class="n">Takeaway</span> — a shipped game's economy is a live system. Treating the store as a data model a designer authors and a server retunes — rather than hand-written screens — is what lets a small team run live-ops on it without an app update in the loop. It's the pattern engines and platforms would standardize later; here it was built in-house because there was nothing off the shelf to reach for.</div>
+
+    <div class="tags" style="margin-top:20px"><span>Unity · C#</span><span>ScriptableObjects</span><span>IAP · Unity Purchasing</span><span>Leanplum live-ops</span><span>Game economy</span></div>
+  </div>
+</section>

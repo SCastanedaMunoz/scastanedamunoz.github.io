@@ -1,0 +1,51 @@
+---
+layout: base
+title: "Building a C++ engine with an AI agent harness"
+permalink: /writing/ai-engine-harness/
+mermaid: true
+description: "How I use a bespoke set of Claude agents and skills — a grounded research agent and a C++ review agent tied to my testing gates — to build a low-level C++ voxel engine solo, without turning it into vibe-coding."
+---
+
+<section class="block">
+  <div class="wrap article prose">
+    <a class="back" href="{{ '/writing/' | relative_url }}">← Writing</a>
+    <div class="kicker" style="margin-top:16px">AI Dev Tooling · C++ Engine</div>
+    <h2>Building a C++ engine with an AI agent harness</h2>
+    <div class="meta">PlanetExplorer · personal project</div>
+
+    <p>Building a low-level C++ voxel-planet engine (see <a href="{{ '/projects/planetexplorer/' | relative_url }}">PlanetExplorer</a>) solo means being the researcher, the implementer, and the reviewer at once. Rather than treat an LLM as an autocomplete, I built a small <strong>agent harness</strong> around the project — specialized, mostly read-only agents plus workflow skills — so AI accelerates the hard parts while the architecture and testing gates stay firmly in control. The goal is leverage without vibe-coding.</p>
+
+    <h3>The agents</h3>
+    <ul>
+      <li><strong><code>engine-research</code> — a read-only research specialist.</strong> Design and trade-off questions (Vulkan vs. Dawn/WebGPU, windowing, build tooling, and rendering/voxel techniques: marching cubes, transvoxel, GPU-driven rendering, LOD, occlusion) get answered from <em>current, official sources</em>, not model memory. It investigates and reports; it never edits code. That keeps low-level decisions grounded where being subtly wrong is expensive.</li>
+      <li><strong><code>engine-reviewer</code> — a C++/C review specialist.</strong> It reviews a diff for correctness bugs, simplification/dedup, C++/C best practices, and adherence to <em>this</em> project's architecture and testing gates, then reports structured, issue-ready findings. I run it after every significant change to the engine's native C++ source. It reports; it doesn't edit or merge.</li>
+    </ul>
+
+    <h3>The skills</h3>
+    <p>On top of the agents, a set of custom skills — <code>start-issue</code>, <code>commit</code>, <code>pr</code>, <code>review</code>, <code>new-issue</code> — encode the repository's actual workflow (branching, signed commits, PR conventions). Crucially, they're <strong>thin orchestration over code and steps that are already deterministic and unit-tested</strong> — the skills exist to cut the amount of human input, not to replace the tested logic underneath. Net effect: fewer manual steps, same testable, reliable outcome.</p>
+
+    <h3>The loop</h3>
+    <pre class="mermaid">
+flowchart TB
+  T[Design question / task] --> R[engine-research<br/>grounded in official docs · read-only]
+  R --> IMPL[Implement in C++]
+  IMPL --> REV[engine-reviewer<br/>diff review vs architecture + gates]
+  REV -->|findings| IMPL
+  REV --> G{Testing gates}
+  G -->|unit · GPU-vs-CPU ref · golden image| PASS[commit / pr skills]
+  G -->|fail| IMPL
+  PASS --> MERGE[Merge]
+    </pre>
+
+    <h3>Why it's built this way</h3>
+    <ul>
+      <li><strong>Agents are advisory, gates are authoritative.</strong> Research and review agents <em>report</em>; correctness is still decided by deterministic unit tests, GPU-pipeline validation against a CPU reference, and headless golden-image comparison. The AI never has commit authority.</li>
+      <li><strong>Grounded, not remembered.</strong> Forcing the research agent to cite current official sources is what makes it trustworthy for graphics-API and algorithm decisions.</li>
+      <li><strong>Reusable discipline.</strong> This is the same instinct I apply to production tooling — encode the standards once, make the routine one command, keep humans and tests in the loop.</li>
+    </ul>
+
+    <div class="callout"><span class="n">Takeaway</span> — a disciplined, agent-assisted workflow lets one engineer take on genuinely low-level work (a custom Vulkan voxel engine) at pace, without surrendering correctness to the model.</div>
+
+    <div class="tags" style="margin-top:20px"><span>Claude / Claude Code</span><span>Agent authoring</span><span>Skill authoring</span><span>C++ engine</span><span>Agentic workflows</span></div>
+  </div>
+</section>

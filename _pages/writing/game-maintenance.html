@@ -1,0 +1,65 @@
+---
+layout: base
+title: "Keeping a live game shippable: build size, launch reliability & the SDK treadmill"
+permalink: /writing/game-maintenance/
+mermaid: true
+description: "Two years of contract work keeping TerraGenesis shippable, fast to load, and reliable in the field — halving the build, hardening the launch path, and automating the fragile parts of the mobile build."
+---
+
+<section class="block">
+  <div class="wrap article prose">
+    <a class="back" href="{{ '/writing/' | relative_url }}">← Writing</a>
+    <div class="kicker" style="margin-top:16px">Live Game Ops · Build &amp; Reliability</div>
+    <h2>Keeping a live game shippable</h2>
+    <div class="meta">TerraGenesis · contract work · 2019–2021</div>
+
+    <p>Not all engineering is building the new thing. <em>TerraGenesis</em> was already a popular, shipped game with a large live player base when I came on as a contractor — so the job wasn't features, it was keeping a moving target shippable: fast to install, reliable to launch, and continuously buildable as iOS, Android, and a dozen third-party SDKs shifted underneath it. Over roughly two years — this work ran from <strong>2019 to 2021</strong> — that meant work on three fronts: <strong>the build, the launch, and the treadmill</strong>.</p>
+
+    <h3>Halving the build</h3>
+    <p>Install conversion falls off with app size — hardest on cellular and in emerging markets, which is exactly where a game like this grows. The Android build was ~300 MB; I got it to <strong>160 MB</strong>. The wins were unglamorous and measured:</p>
+    <ul>
+      <li><strong>Texture import discipline.</strong> Correct per-platform compression across the board, with the planet height-map textures handled separately — the result looked ~95% identical while shedding most of the weight.</li>
+      <li><strong>LZ4HC</strong> build compression, which does most of the remaining work once the assets themselves are sane.</li>
+      <li><strong><code>Resources/</code> hygiene.</strong> Unity force-includes everything under <code>Resources/</code> in the build, whether it's referenced or not. Moving the icon set out of <code>Resources/</code> alone cut a meaningful chunk. A parallel pass optimized iOS assets.</li>
+    </ul>
+
+    <h3>A launch that actually finishes</h3>
+    <p>"Load success" — the share of app opens that actually reach gameplay — is a real KPI, and on a large device matrix it's where players quietly churn. Several pieces here worked together:</p>
+    <ul>
+      <li><strong>On-demand asset delivery.</strong> Rather than bundle every planet's imagery into the binary, the app streams it at launch through a downloader that reports live progress (<code>finished / total</code>) behind a loading popup — smaller install, assets fetched when needed.</li>
+      <li><strong>Android OBB expansion handling.</strong> The launch path waits for the expansion file to be present before proceeding, so the game doesn't race ahead of its own assets.</li>
+      <li><strong>A remote-config watchdog on the loading screen.</strong> Its detection timeout and toggles are read from remote config (<code>ssod_detection_time</code>, defaulting to 60s, and companion flags) — so if launches started stalling in the field, we could tune the timeout and mitigation server-side <em>without shipping a build</em>.</li>
+      <li><strong>Main-thread init discipline &amp; crash fixes.</strong> Pushing SDK init and conversion-value writes onto the main thread, and chasing dependency-update crashes (e.g. Firebase Messaging) — the boring bugs that show up as a launch-time crash spike.</li>
+    </ul>
+
+    <h3>The SDK &amp; compliance treadmill</h3>
+    <p>A live game inherits every platform change whether or not it wants to. Keeping this one compliant and buildable meant a steady cadence of: iOS 14 <strong>App Tracking Transparency</strong> and IDFA handling, <strong>SKAdNetwork</strong> configuration, a <strong>COPPA</strong> flag, minimum-deployment-target bumps — and version-managing a dozen third-party SDKs (Firebase, Facebook, IronSource and its ad adapters, and more), including migrating dependency resolution from PlayServicesResolver to the External Dependency Manager. None of it is glamorous; all of it is the difference between "ships this week" and "blocked."</p>
+
+    <h3>Making the fragile parts repeatable</h3>
+    <p>The most brittle step in a Unity mobile build is the post-export mutation of the generated Xcode project. I authored and maintained a suite of <strong>build post-processors</strong> so that step is deterministic instead of a manual ritual: App Tracking Transparency and SKAdNetwork entries, entitlements wired by <em>relative</em> path, changes targeting the correct main target GUID, the move to an Xcode <em>workspace</em>, and proper escaping/quoting in the generated scripts. Sitting above that, a headless CI build runner (<code>Builder.cs</code>) parses command-line arguments — project path, build target, version, and keystore secrets — so a clean build comes out of CI the same way every time, not off one engineer's machine.</p>
+
+    <h3>The launch path</h3>
+    <pre class="mermaid">
+flowchart TB
+  START[App start] --> RC[Remote config<br/>load-flow timeouts &amp; toggles]
+  RC --> OBB{Android OBB present?}
+  OBB -->|wait| OBB
+  OBB -->|ready| DL[On-demand asset download<br/>progress: finished / total]
+  DL --> WD[Loading-screen watchdog<br/>ssod_detection_time]
+  WD -->|stalled| MIT[Mitigate / recover]
+  WD -->|ok| GAME[Gameplay]
+  MIT --> GAME
+    </pre>
+
+    <h3>Why it's built this way</h3>
+    <ul>
+      <li><strong>Size and launch are conversion.</strong> A smaller install and a launch that reliably finishes aren't polish — they're the top of the retention funnel.</li>
+      <li><strong>Tune in the field, not in the store.</strong> Putting launch-flow timeouts behind remote config means a live incident is a config change, not a multi-day store submission.</li>
+      <li><strong>Automate the brittle step.</strong> Scripting the Xcode post-processing and the CI build turns the flakiest part of mobile shipping into something reproducible.</li>
+    </ul>
+
+    <div class="callout"><span class="n">Takeaway</span> — the work that keeps a shipped game alive is mostly invisible: shave the build, harden the launch, and script the parts that break. It's the same platform-and-reliability instinct I bring to SDK work — measured wins, safe to ship, tunable after it ships.</div>
+
+    <div class="tags" style="margin-top:20px"><span>Unity · C#</span><span>Build optimization</span><span>iOS / Android</span><span>Remote config</span><span>CI · build post-processors</span><span>ATT · SKAdNetwork · COPPA</span></div>
+  </div>
+</section>

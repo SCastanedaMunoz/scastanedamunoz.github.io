@@ -10,8 +10,9 @@
   <meta property="og:title" content="{% if page.title %}{{ page.title }} · {% endif %}{{ site.author.name | default: site.title }}">
   <meta property="og:description" content="{{ page.description | default: site.description }}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta property="og:image" content="{{ '/assets/images/avatar.jpg' | absolute_url }}">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="{{ '/assets/images/og.png' | absolute_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ '/assets/images/og.png' | absolute_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -181,6 +182,27 @@
     /* reusable subhead + timeline paragraph text */
     .section-subhead{font-size:15px; text-transform:uppercase; letter-spacing:1.4px; color:var(--accent); margin:34px 0 14px}
     .tl p{color:var(--mut)}
+
+    /* reusable icon-led card header (icon + title/role) */
+    .cardhead{display:flex; gap:14px; align-items:center; margin-bottom:12px}
+    .cardhead img{width:58px; height:58px; border-radius:14px; flex:none; object-fit:cover; border:1px solid var(--line-strong)}
+    .cardhead h3{margin:0}
+    .cardhead .role{margin-top:3px}
+
+    /* ---- articles / deep-dives ---- */
+    .article{max-width:800px}
+    .article .meta{color:var(--dim); font-size:13px; margin:4px 0 22px; letter-spacing:.3px}
+    .article p{color:var(--mut); margin-bottom:15px}
+    .article h3{font-size:18px; margin:28px 0 10px; color:#fff}
+    .article ul{margin:0 0 15px; padding-left:20px; color:var(--mut)}
+    .article ul li{margin-bottom:7px}
+    .article code{background:var(--surface-2); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:.9em; color:var(--accent-2)}
+    .article pre{background:#0e0b08; border:1px solid var(--line); border-radius:10px; padding:16px 18px; overflow-x:auto; font-size:13px; color:var(--ink); margin:0 0 16px; line-height:1.5}
+    .article pre code{background:none; border:0; padding:0; color:inherit}
+    .mermaid{margin:20px 0; text-align:center}
+    .mermaid svg{max-width:100%; height:auto}
+    .callout{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:10px; padding:14px 16px; margin:0 0 16px}
+    .callout .n{font-family:"Sora",sans-serif; font-weight:800; color:var(--accent); font-size:1.4em}
   </style>
 </head>
 <body>
@@ -232,5 +254,15 @@
       im.addEventListener('click', function(e){ e.stopPropagation(); lbimg.src=im.currentSrc||im.src; lbimg.alt=im.alt||''; lb.classList.add('open'); });
     });
   </script>
+  {% if page.mermaid %}
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad:true, theme:'base', securityLevel:'loose', flowchart:{curve:'basis',useMaxWidth:true},
+      themeVariables:{ darkMode:true, background:'#17130f', primaryColor:'#2a241e', primaryTextColor:'#efe8de',
+        primaryBorderColor:'#f0a63c', lineColor:'#c2760a', secondaryColor:'#241c14', tertiaryColor:'#1c1814',
+        fontFamily:'Inter, sans-serif', fontSize:'14px', textColor:'#efe8de', mainBkg:'#2a241e',
+        clusterBkg:'#1c1814', clusterBorder:'#3a2f24', nodeBorder:'#f0a63c', edgeLabelBackground:'#17130f', titleColor:'#f0a63c' } });
+  </script>
+  {% endif %}
 </body>
 </html>

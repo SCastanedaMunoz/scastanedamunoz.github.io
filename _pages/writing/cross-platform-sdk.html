@@ -1,0 +1,47 @@
+---
+layout: base
+title: "Shipping one feature in lockstep across Unity, iOS & Android"
+permalink: /writing/cross-platform-sdk/
+mermaid: true
+description: "How a single ad-mediation feature spans a C# API, an Obj-C/Swift layer, and a Java/Kotlin layer — and how I keep the surface, versioning, and behavior identical across all three."
+---
+
+<section class="block">
+  <div class="wrap article prose">
+    <a class="back" href="{{ '/writing/' | relative_url }}">← Writing</a>
+    <div class="kicker" style="margin-top:16px">SDK Architecture</div>
+    <h2>Shipping one feature in lockstep across Unity, iOS &amp; Android</h2>
+    <div class="meta">Chartboost Mediation &amp; Core Unity SDKs</div>
+
+    <p>When a developer calls one method in the Unity SDK, that call has to travel through a C# wrapper, cross into native Objective-C/Swift on iOS and Java/Kotlin on Android, invoke a network adapter, and return a result — with identical semantics on both platforms. Owning the Unity layer of a production ad-mediation platform means every feature is really <em>three</em> implementations that must stay in perfect lockstep, plus an ecosystem of 20+ ad-network adapters that all depend on that contract.</p>
+
+    <h3>The seam</h3>
+    <p>The C# API is the single source of truth for the public surface. Below it, thin, generated-where-possible bridges cross the managed↔native boundary — P/Invoke and callbacks to the iOS framework, JNI/`AndroidJavaObject` to the Android library. The trick is that consumers never see the seam: sync and async calls, callbacks, and error models look the same regardless of platform.</p>
+
+    <pre class="mermaid">
+flowchart TD
+  DEV[Game / Unity developer] --> API[Unity C# API<br/>single public surface]
+  API --> BR{Native bridge<br/>FFI layer}
+  BR -->|P/Invoke + callbacks| IOS[iOS SDK<br/>Obj-C / Swift]
+  BR -->|JNI / AndroidJavaObject| AND[Android SDK<br/>Java / Kotlin]
+  IOS --> ADI[Ad-network adapters]
+  AND --> ADA[Ad-network adapters]
+  API -. UPM / NuGet .-> DIST[(Distributed to studios)]
+    </pre>
+
+    <h3>What "lockstep" actually requires</h3>
+    <ul>
+      <li><strong>One API surface, three backings.</strong> A feature isn't done until the C#, iOS, and Android sides agree on names, signatures, threading, and error behavior — reviewed together, shipped together.</li>
+      <li><strong>Versioning &amp; backward compatibility.</strong> Studios upgrade on their own schedule, so the public contract evolves additively; breaking changes are deliberate and coordinated across the SDK and every adapter.</li>
+      <li><strong>Distribution parity.</strong> The SDK and adapters publish to both <strong>Unity UPM</strong> and <strong>NuGet</strong> with their native dependencies resolved — the same version means the same behavior everywhere.</li>
+      <li><strong>Editor tooling.</strong> Cloud-updatable adapter management (via AWS S3) and Unity Editor integration so integrating studios don't hand-wire native dependencies.</li>
+    </ul>
+
+    <h3>Why the boundary is a flat contract</h3>
+    <p>Keeping the managed↔native boundary a narrow, well-specified seam is what makes three codebases behave like one. It's the same principle I'm exploring at a lower level in <a href="{{ '/projects/planetexplorer/' | relative_url }}">PlanetExplorer</a> — a C++ core behind a flat C ABI, designed to be embedded anywhere without coupling.</p>
+
+    <div class="callout"><span class="n">Scale</span> — {{ site.data.adoption.packages }} public packages, {{ site.data.adoption.total_display }} downloads across npm and NuGet, shipped in lockstep and adopted from independent studios to industry leaders.</div>
+
+    <div class="tags" style="margin-top:20px"><span>Unity · C#</span><span>iOS · Obj-C/Swift</span><span>Android · Java/Kotlin</span><span>Native ↔ managed FFI</span><span>API &amp; versioning design</span></div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+layout: base
+title: "Writing"
+permalink: /writing/
+description: "Engineering deep-dives on cross-platform SDK architecture, AI-powered developer tooling, and test automation."
+---
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Writing</div>
+    <h2>Engineering deep-dives</h2>
+    <p class="sub">How I think about the hard parts of the work — cross-platform SDK architecture, AI-powered developer tooling, and test automation at scale. Written to show the reasoning, not just the result.</p>
+
+    <div class="grid g3">
+      <div class="card"><div class="body">
+        <div class="role">AI Dev Tooling · C++ Engine</div>
+        <h3>Building a C++ engine with an AI agent harness</h3>
+        <p>A grounded research agent and a C++ review agent, tied to my testing gates, that let me build a low-level Vulkan voxel engine solo — leverage without vibe-coding.</p>
+        <div class="tags"><span>Claude agents</span><span>C++ engine</span><span>Agentic workflows</span></div>
+        <div class="btns"><a class="lnkbtn" href="{{ '/writing/ai-engine-harness/' | relative_url }}">Read →</a></div>
+      </div></div>
+      <div class="card"><div class="body">
+        <div class="role">SDK Architecture</div>
+        <h3>Shipping one feature in lockstep across Unity, iOS &amp; Android</h3>
+        <p>A single mediation feature spans a C# API, an Obj-C/Swift layer, and a Java/Kotlin layer. Keeping the surface, versioning, and behavior identical across all three.</p>
+        <div class="tags"><span>Unity · C#</span><span>Native FFI</span><span>API design</span></div>
+        <div class="btns"><a class="lnkbtn" href="{{ '/writing/cross-platform-sdk/' | relative_url }}">Read →</a></div>
+      </div></div>
+      <div class="card"><div class="body">
+        <div class="role">Test Automation</div>
+        <h3>A cross-platform end-to-end test framework on real devices</h3>
+        <p>A custom device-level harness — because ad SDKs seize Unity's focus and in-engine automation can't reach them. Maestro flows, real devices, unified reporting.</p>
+        <div class="tags"><span>Maestro</span><span>BrowserStack</span><span>TestRail / Allure</span></div>
+        <div class="btns"><a class="lnkbtn" href="{{ '/writing/e2e-automation/' | relative_url }}">Read →</a></div>
+      </div></div>
+      <div class="card"><div class="body">
+        <div class="role">AI Dev Tooling · CI/CD</div>
+        <h3>AI tooling I built for a cross-platform SDK pipeline</h3>
+        <p>Release-automation skills, LLM-assisted test authoring, project-context grounding, and review-workflow guardrails — the AI pieces I authored inside the SDK monorepo.</p>
+        <div class="tags"><span>Claude / LLM</span><span>Skill authoring</span><span>Release automation</span></div>
+        <div class="btns"><a class="lnkbtn" href="{{ '/writing/sdk-ai-tooling/' | relative_url }}">Read →</a></div>
+      </div></div>
+      <div class="card"><div class="body">
+        <div class="role">Live Game Ops · Build &amp; Reliability · 2019–2021</div>
+        <h3>Keeping a live game shippable</h3>
+        <p>Two years on TerraGenesis (2019–2021): halving the build (300→160 MB), hardening the launch path with on-demand assets and a remote-config watchdog, and automating the fragile parts of the mobile build.</p>
+        <div class="tags"><span>Build optimization</span><span>Launch reliability</span><span>CI</span></div>
+        <div class="btns"><a class="lnkbtn" href="{{ '/writing/game-maintenance/' | relative_url }}">Read →</a></div>
+      </div></div>
+      <div class="card"><div class="body">
+        <div class="role">Game Economy · Live-Ops · 2022</div>
+        <h3>Building a config-driven live-ops store for a shipped game</h3>
+        <p>The store &amp; economy for TerraGenesis: Landfall (2022) — deals, sales, bundles, and pricing as data a designer edits and a server retunes, so live-ops runs without an app update.</p>
+        <div class="tags"><span>Unity · C#</span><span>IAP</span><span>Game economy</span></div>
+        <div class="btns"><a class="lnkbtn" href="{{ '/writing/liveops-store/' | relative_url }}">Read →</a></div>
+      </div></div>
+    </div>
+  </div>
+</section>

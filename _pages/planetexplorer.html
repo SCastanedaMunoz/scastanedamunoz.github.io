@@ -1,0 +1,86 @@
+---
+layout: base
+title: "PlanetExplorer — C++ voxel-planet engine"
+permalink: /projects/planetexplorer/
+mermaid: true
+description: "A from-scratch C++ voxel-planet engine: an engine-agnostic C-ABI core, a custom Vulkan renderer, and a standalone host — built for full control of the render and memory model."
+---
+
+<section class="block">
+  <div class="wrap article prose">
+    <a class="back" href="{{ '/projects/' | relative_url }}">← Back to Projects</a>
+    <div class="kicker" style="margin-top:16px">Personal project · Active development</div>
+    <h2 style="margin:0">PlanetExplorer</h2>
+    <div class="tags" style="margin:12px 0 6px"><span>C++17</span><span>Vulkan</span><span>CMake / Ninja</span><span>Engine-agnostic C ABI</span><span>Marching cubes · LOD</span><span>GoogleTest</span></div>
+
+    <p>PlanetExplorer is a voxel-based procedural-planet engine I'm building from scratch in C++. It began as a Unity (URP) prototype; I've since <strong>retired the engine host entirely</strong> and am rebuilding it as a standalone C++ engine — for full control of the render and memory model, and the freedom to run outside any engine. The core is deliberately kept engine-agnostic, so it can still be embedded in Unreal or Unity <em>later</em> if I ever want to, without recompilation coupling.</p>
+
+    <div class="carousel">
+      <div class="viewport"><div class="track">
+        <img src="{{ '/assets/images/planetexplorer/shot2.png' | relative_url }}" alt="A full Earthlike planet from orbit — procedural biomes (ice, ocean, archipelago, desert) with a live biome probe">
+        <img src="{{ '/assets/images/planetexplorer/shot1.png' | relative_url }}" alt="Walking the surface — real-time terrain, volumetric clouds, and the live planet configurator with a performance HUD">
+        <img src="{{ '/assets/images/planetexplorer/shot3.png' | relative_url }}" alt="'Dune' preset — an arid desert world from the same system with a different seed and biome weights">
+        <img src="{{ '/assets/images/planetexplorer/shot4.png' | relative_url }}" alt="Marching-cubes meshing visible at low detail — the voxel surface the engine generates and streams as chunks">
+      </div></div>
+      <button class="cnav prev" aria-label="Previous">‹</button>
+      <button class="cnav next" aria-label="Next">›</button>
+      <div class="dots"></div>
+      <div class="cap"></div>
+    </div>
+
+    <h3>What it does</h3>
+    <ul>
+      <li>Generates <strong>full procedural planets in real time</strong> — orbit them, then drop into a walk view on the surface.</li>
+      <li>A live <strong>biome system</strong> (Earthlike, Desert, Lava, Ice World, Archipelago) with per-biome temperature / moisture / bias, and presets like <em>Varied World</em>, <em>Dune</em>, and <em>Glacia</em>.</li>
+      <li>An in-engine <strong>configurator</strong> — seed, region size, latitude, blend, warp, fog, sky — that regenerates the world live.</li>
+      <li>A performance HUD that surfaces the systems work under the hood: <strong>frame rate, chunk count, occlusion culling, and disk-cache hit/miss</strong> for chunk streaming.</li>
+      <li>Marching-cubes meshing with an adjustable detail/LOD level (visible as the raw voxel surface in the last shot).</li>
+    </ul>
+
+    <h3>Architecture — three hard-walled layers</h3>
+    <p>The design principle is a narrow, well-specified boundary between layers, so each can evolve (or be swapped) independently.</p>
+
+    <pre class="mermaid">
+flowchart TD
+  subgraph HOST[host — thin platform shell]
+    H[window · input · main loop<br/>standalone today, swappable]
+  end
+  subgraph REND[renderer — our own, adapter seam]
+    G[GraphicsBackend interface] --> VK[VulkanBackend<br/>device · swapchain · pipelines]
+  end
+  subgraph CORE[core — pure C++, flat C ABI, zero deps]
+    C[voxel density · marching cubes<br/>transvoxel LOD · chunk streaming · world state]
+  end
+  H --> G
+  H -->|C ABI| C
+  G -->|meshes / buffers| C
+  CORE -. embeddable later .-> UE[Unreal native module]
+  CORE -. embeddable later .-> UN[Unity native plugin]
+    </pre>
+
+    <ul>
+      <li><strong>core</strong> — pure C++ behind a flat <strong>C ABI</strong> with zero engine/GPU/windowing dependencies. This is the reusable jewel: voxel density fields, meshing (marching cubes / transvoxel LOD), chunk streaming, and world state. Because the boundary is a C ABI, it links into any host without coupling.</li>
+      <li><strong>renderer</strong> — a custom renderer over <strong>Vulkan</strong>, sitting behind a backend-agnostic <code>GraphicsBackend</code> adapter seam so a different GPU backend (e.g. WebGPU/Dawn) can be dropped in later without touching engine code.</li>
+      <li><strong>host</strong> — a thin standalone shell owning window, input, and the frame loop; drives the core through the C ABI.</li>
+    </ul>
+
+    <h3>Engineering discipline</h3>
+    <ul>
+      <li><strong>Deterministic core tests</strong> (GoogleTest + CTest) with C-ABI contract tests that grow per subsystem.</li>
+      <li><strong>GPU pipelines validated against a CPU reference</strong> on identical input — ported compute must match the reference implementation.</li>
+      <li><strong>Headless renderer</strong>: offscreen clear + pixel readback, unit-tested, with golden-image comparison planned in CI using a software adapter.</li>
+    </ul>
+
+    <h3>It also runs headless</h3>
+    <p>Beyond the interactive views above, the engine runs headless for CI — a bounded smoke check brings up a validated Vulkan device and meshes terrain, then exits:</p>
+    <pre><code>PlanetExplorer engine core v0.3.0
+renderer: Vulkan backend on "NVIDIA GeForce RTX 3080" (validation on)
+presenter: 3 images, 1280x720, format=44
+terrain mesh: 34770 vertices
+world created (seed=42 radius=1000.0 chunk=32); entering loop (smoke)</code></pre>
+
+    <div class="callout"><span class="n">WIP</span> — the engine already renders full procedural planets with live biome editing, occlusion culling, and chunk streaming (above). Ongoing work: transvoxel LOD, Hi-Z occlusion refinement, and broader platform coverage. Source is private for now.</div>
+
+    <p style="font-size:13px; opacity:.7; margin-top:6px">Why it's here: it's the C++/engine-level and native-embedding counterpart to my SDK work — the same discipline of a flat, well-specified boundary that lets independent layers move without breaking each other.</p>
+  </div>
+</section>
