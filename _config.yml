@@ -2,51 +2,26 @@ title: SCastanedaMunoz
 
 author:
   name: Santiago Castaneda Munoz
-  location: "Austin, Texas"
-  avatar: "/assets/images/avatar.jpg"
-  bio: "Software Engineer with over 6 years in multiplatform game development, specializing in the mobile gaming industry"
-  links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/SCastanedaMunoz"
-    - label: "LinkedIn"
-      icon: "fab fa-linkedin"
-      url: "https://www.linkedin.com/in/santiagocastanedamunoz/"
 
 email: santiagocm98@hotmail.com
-description: "A portfolio to showcase my projects, experience, and blog posts."
-baseurl: "" # the subpath of your site, e.g. /blog
+description: "Portfolio of Santiago Castaneda Munoz — Senior Software Engineer building cross-platform SDKs, AI-powered developer tooling, and shipped mobile games."
+baseurl: ""
 github_username: SCastanedaMunoz
-domain: scastanedamunoz.github.io 
-url: https://scastanedamunoz.github.io 
+domain: scastanedamunoz.github.io
+url: https://scastanedamunoz.github.io
 
 data_dir: _data
 permalink: pretty
 
-# Build settings
-remote_theme: "mmistakes/minimal-mistakes@4.26.2"
-minimal_mistakes_skin: "neon"
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
-  - jekyll-include-cache
 
 defaults:
   - scope:
       path: "_pages"
       type: pages
     values:
-      layout: single
-      author_profile: true
+      layout: base
 
 include:
   - _pages
-
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/SCastanedaMunoz"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/santiagocastanedamunoz/"

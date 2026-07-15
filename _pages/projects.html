@@ -1,0 +1,94 @@
+---
+layout: base
+title: "Projects"
+permalink: /projects/
+---
+
+<section class="block">
+  <div class="wrap">
+    <div class="kicker">Projects</div>
+    <h2>Open-source SDKs, shipped games &amp; more</h2>
+    <p class="sub">The open-source SDKs I maintain professionally, games I've shipped to mobile, and web projects from my full-stack training. My latest cross-platform SDK and AI-tooling work lives in private monorepos — the public Chartboost repositories below mirror it.</p>
+
+    <!-- SDKs -->
+    <h3 class="section-subhead" style="margin-top:26px">Open-Source SDKs — Chartboost</h3>
+    <div class="grid g3">
+      <div class="card"><div class="body">
+        <h3>Chartboost Mediation Unity SDK</h3>
+        <div class="role">Owner / Maintainer</div>
+        <p>Open-source Unity ad-mediation SDK bridging Android &amp; iOS native layers, with a C# API surface and cloud-updatable adapters. Published to npm and NuGet with all dependencies.</p>
+        <div class="tags"><span>Unity · C#</span><span>iOS</span><span>Android</span><span>npm / NuGet</span></div>
+        <div class="btns">
+          <a class="lnkbtn" href="https://github.com/ChartBoost/chartboost-mediation-unity-sdk" rel="noopener">GitHub</a>
+          <a class="lnkbtn" href="https://www.npmjs.com/package/com.chartboost.mediation" rel="noopener">npm</a>
+          <a class="lnkbtn" href="https://www.nuget.org/packages/Chartboost.CSharp.Mediation.Unity" rel="noopener">NuGet</a>
+        </div>
+      </div></div>
+      <div class="card"><div class="body">
+        <h3>Chartboost Core Unity SDK</h3>
+        <div class="role">Owner / Maintainer</div>
+        <p>Modular Unity SDK for consent, initialization, and module management across Android and iOS — the foundation the mediation stack builds on.</p>
+        <div class="tags"><span>Unity · C#</span><span>Native bridging</span><span>Modular SDK</span></div>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/ChartBoost/chartboost-core-unity-sdk" rel="noopener">GitHub</a></div>
+      </div></div>
+      <div class="card"><div class="body">
+        <h3>Ad-Network Adapter Ecosystem</h3>
+        <div class="role">Owner / Maintainer</div>
+        <p>20+ public Unity ad-network adapters (AdMob, AppLovin, Meta, ironSource, Pangle, Mintegral, Vungle, and more), each published to npm and NuGet and released from the internal monorepo.</p>
+        <div class="tags"><span>Unity · C#</span><span>20+ adapters</span><span>Release automation</span></div>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/orgs/ChartBoost/repositories?q=mediation-unity-adapter" rel="noopener">Adapter repos</a></div>
+      </div></div>
+    </div>
+
+    <!-- Games -->
+    <h3 class="section-subhead">Shipped Games</h3>
+    <div class="grid g3">
+      <div class="card">
+        <img class="thumb" src="{{ '/assets/images/games/taptapcars/home_screen.png' | relative_url }}" alt="TapTapCars: Traffic Jam! key art" style="object-position:center 30%">
+        <div class="body">
+          <h3>TapTapCars: Traffic Jam!</h3>
+          <div class="role">Lead Programmer</div>
+          <p>A 2D top-down traffic-management puzzle game — built all gameplay in Unity C# and integrated Firebase, AdMob, and IronSource. Shipped on iOS &amp; Android (now delisted).</p>
+          <div class="tags"><span>Unity · C#</span><span>Firebase</span><span>AdMob</span><span>IronSource</span></div>
+          <div class="btns"><a class="lnkbtn" href="{{ '/projects/taptapcars/' | relative_url }}">View project →</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <img class="thumb" src="{{ '/assets/images/projects/matchmaker_icon.png' | relative_url }}" alt="Matchmaker">
+        <div class="body">
+          <h3>Matchmaker</h3>
+          <div class="role">Lead Programmer</div>
+          <p>A 2D top-down puzzle game where animals match on collision. I built the core mechanics, a data-driven level-selection system, an in-editor waypoint tool, and the tutorial flow. Shipped on iOS &amp; Android (now delisted).</p>
+          <div class="tags"><span>Unity · C#</span><span>Custom tooling</span></div>
+          <div class="btns"><a class="lnkbtn" href="{{ '/projects/matchmaker/' | relative_url }}">View project →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web -->
+    <h3 class="section-subhead" style="margin-bottom:8px">Web Projects</h3>
+    <p class="sub" style="margin-bottom:16px">Full-stack coursework from the UT Austin Web Development program. Live demos are retired; source lives in the public bootcamp repository.</p>
+    <div class="grid g3">
+      <div class="card"><img class="thumb" src="{{ '/assets/images/web/covid_reporter.png' | relative_url }}" alt="COVID-19 Reporter"><div class="body">
+        <h3>COVID-19 Reporter</h3><p>Self-reporting app to log COVID-19 status and visualize statuses across map areas.</p>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/SCastanedaMunoz/UT-Austin-Bootcamp/tree/HEAD/Project-2" rel="noopener">Code ↗</a></div></div></div>
+      <div class="card"><img class="thumb" src="{{ '/assets/images/web/falcon_finder.png' | relative_url }}" alt="Falcon Finder"><div class="body">
+        <h3>Falcon Finder</h3><p>Restaurant finder filtering by area and rating, built on the Google Maps and Zomato APIs.</p>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/SCastanedaMunoz/UT-Austin-Bootcamp/tree/HEAD/Project-1" rel="noopener">Code ↗</a></div></div></div>
+      <div class="card"><img class="thumb" src="{{ '/assets/images/web/weather_dashboard.png' | relative_url }}" alt="Weather Dashboard"><div class="body">
+        <h3>Weather Dashboard</h3><p>jQuery dashboard pulling live weather from OpenWeatherMap, persisting preferences in local storage.</p>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/SCastanedaMunoz/UT-Austin-Bootcamp/tree/HEAD/Weather-Dashboard" rel="noopener">Code ↗</a></div></div></div>
+      <div class="card"><img class="thumb" src="{{ '/assets/images/web/work_day_scheduler.png' | relative_url }}" alt="Work Day Scheduler"><div class="body">
+        <h3>Work Day Scheduler</h3><p>A day planner built almost entirely in jQuery and Moment.js, focused on date/time management.</p>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/SCastanedaMunoz/UT-Austin-Bootcamp/tree/HEAD/Work-Day-Scheduler" rel="noopener">Code ↗</a></div></div></div>
+      <div class="card"><img class="thumb" src="{{ '/assets/images/web/code_quiz.png' | relative_url }}" alt="Code Quiz"><div class="body">
+        <h3>Code Quiz</h3><p>Single-page timed quiz driven by a jQuery state machine (intro → quiz → score → leaderboard).</p>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/SCastanedaMunoz/UT-Austin-Bootcamp/tree/HEAD/Code-Quiz" rel="noopener">Code ↗</a></div></div></div>
+      <div class="card"><img class="thumb" src="{{ '/assets/images/web/password_generator.png' | relative_url }}" alt="Password Generator"><div class="body">
+        <h3>Password Generator</h3><p>Configurable password generator exploring arrays, data types, and DOM interaction in vanilla JS.</p>
+        <div class="btns"><a class="lnkbtn" href="https://github.com/SCastanedaMunoz/UT-Austin-Bootcamp/tree/HEAD/Password-Generator" rel="noopener">Code ↗</a></div></div></div>
+    </div>
+
+    <p style="margin-top:22px;color:var(--dim);font-size:14px">More on GitHub → <a href="https://github.com/SCastanedaMunoz" rel="noopener">github.com/SCastanedaMunoz</a></p>
+  </div>
+</section>

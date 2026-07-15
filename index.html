@@ -1,7 +1,257 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
+layout: base
+title: "Home"
+permalink: /
 ---
+
+<style>
+  /* ---- adoption (amber) ---- */
+  .adopt{--surf:var(--surface); --bar:#f0a63c; --bar-hi:#ffc76b}
+  .adopt .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:20px}
+  .adopt .kpi{background:var(--surf); border:1px solid var(--line); border-radius:14px; padding:16px 18px}
+  .adopt .kpi.hero{background:linear-gradient(135deg,#3a2a12,#221c15); border-color:var(--line-strong)}
+  .adopt .kpi .num{font-family:"Sora"; font-size:2em; font-weight:800; color:var(--bar); line-height:1}
+  .adopt .kpi.hero .num{color:var(--bar-hi)}
+  .adopt .kpi .lbl{font-size:12.5px; color:var(--mut); margin-top:7px; line-height:1.35}
+  .adopt .kpi .lbl span{opacity:.7}
+  .adopt .chart-fig{background:var(--surf); border:1px solid var(--line); border-radius:14px; padding:18px 18px 14px; margin:0; position:relative}
+  .adopt figcaption{font-size:14px; color:var(--ink); margin-bottom:14px}
+  .adopt .src{font-size:12px; color:var(--dim); margin:10px 0 0}
+  /* language breakdown */
+  .langbar{display:flex; gap:2px; height:22px; border-radius:11px; overflow:hidden; border:1px solid var(--line); margin:14px 0 16px; background:var(--bg)}
+  .langbar .seg{height:100%}
+  .leg{display:flex; flex-wrap:wrap; gap:8px 20px}
+  .leg span{display:inline-flex; align-items:center; gap:8px; font-size:14.5px; color:var(--mut)}
+  .leg i{width:11px; height:11px; border-radius:3px; display:inline-block; flex:none}
+  .leg b{color:var(--ink); font-weight:600}
+  /* tabs + adapter bars */
+  .tabs{display:flex; gap:6px; margin:4px 0 16px}
+  .tabs button{background:var(--surface); border:1px solid var(--line); color:var(--mut); font-family:"Sora",sans-serif; font-weight:600; font-size:14px; padding:8px 20px; border-radius:9px; cursor:pointer}
+  .tabs button.active{background:color-mix(in srgb,var(--accent) 16%,transparent); border-color:var(--line-strong); color:var(--accent)}
+  .tabpanel[hidden]{display:none}
+  .treemap{position:relative; width:100%; height:360px; margin-top:4px; border-radius:10px; overflow:visible}
+  .treemap .tile{position:absolute; overflow:hidden; border-radius:5px; box-sizing:border-box; padding:6px 8px; transition:filter .12s}
+  .treemap .tile:hover{filter:brightness(1.08)}
+  .treemap .tmtip{position:absolute; pointer-events:none; z-index:20; background:#0e0b08; color:var(--ink);
+    border:1px solid var(--line-strong); border-radius:8px; padding:6px 10px; font-size:12.5px; white-space:nowrap;
+    box-shadow:0 6px 18px rgba(0,0,0,.5)}
+  .treemap .tmtip b{color:#f6c445}
+  .treemap .tile .tl{font-weight:700; font-size:12px; color:#241a0b; line-height:1.12; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .treemap .tile .tv{font-size:11px; color:#3a2a12; margin-top:2px}
+  .tmlegend{display:flex; gap:18px; align-items:center; margin-top:12px; font-size:12.5px; color:var(--mut); flex-wrap:wrap}
+  .tmlegend i{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:7px; vertical-align:-1px}
+</style>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Senior Software Engineer · Austin, TX</div>
+      <h1>Santiago Castaneda&nbsp;Munoz</h1>
+      <div class="role">Cross-platform SDK &amp; Platform Engineering</div>
+      <p class="pitch">I build cross-platform, cross-language SDKs — and the AI-powered developer tooling that keeps them reliable. Today I own the Unity layer of a production ad-mediation platform shipped in lockstep across Unity, iOS, and Android, and used from independent studios to industry leaders like Zynga.</p>
+      <div class="cta">
+        <a class="btn primary" href="{{ '/projects/' | relative_url }}">View Projects →</a>
+        <a class="btn ghost" href="https://github.com/SCastanedaMunoz" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg> GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/santiagocastanedamunoz/" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> LinkedIn</a>
+      </div>
+    </div>
+    <img class="portrait" src="{{ '/assets/images/avatar.jpg' | relative_url }}" alt="Santiago Castaneda Munoz">
+  </div>
+</header>
+
+<!-- ===================== STATS ===================== -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">7+</div><div class="l">Years experience</div></div>
+      <div class="stat"><div class="n">200+</div><div class="l">PRs merged / year</div></div>
+      <div class="stat"><div class="n">515K+</div><div class="l">Package downloads</div></div>
+      <div class="stat"><div class="n">26</div><div class="l">Public packages</div></div>
+    </div>
+    <div style="margin-top:30px">
+      <div class="kicker" style="margin-bottom:8px">Languages I ship in</div>
+      <div class="langbar">
+        <div class="seg" style="width:52.7%;background:#f0a63c" title="C# 52.7%"></div>
+        <div class="seg" style="width:23.2%;background:#e07b39" title="C++ 23.2%"></div>
+        <div class="seg" style="width:12.7%;background:#e8c352" title="JavaScript 12.7%"></div>
+        <div class="seg" style="width:3.1%;background:#c98a4b" title="Python 3.1%"></div>
+        <div class="seg" style="width:2.2%;background:#b5734a" title="Dart 2.2%"></div>
+        <div class="seg" style="width:6.1%;background:#6d6152" title="Other 6.1%"></div>
+      </div>
+      <div class="leg">
+        <span><i style="background:#f0a63c"></i><b>C#</b>&nbsp;52.7%</span>
+        <span><i style="background:#e07b39"></i><b>C++</b>&nbsp;23.2%</span>
+        <span><i style="background:#e8c352"></i><b>JavaScript</b>&nbsp;12.7%</span>
+        <span><i style="background:#c98a4b"></i><b>Python</b>&nbsp;3.1%</span>
+        <span><i style="background:#b5734a"></i><b>Dart</b>&nbsp;2.2%</span>
+        <span><i style="background:#6d6152"></i><b>Other</b>&nbsp;6.1%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="kicker">About</div>
+    <h2>Engineer at the seam of managed &amp; native code</h2>
+    <div style="max-width:76ch; color:var(--mut); font-size:16px; margin-top:14px">
+      <p style="margin-bottom:14px">Senior Software Engineer with <span class="kw">7+ years</span> building cross-platform, cross-language SDKs for the mobile gaming and ad-tech industry. I own the Unity layer of a production ad-mediation platform, shipping features in lockstep across <span class="kw">Unity (C#), iOS (Objective-C/Swift), and Android (Java/Kotlin)</span> while keeping the public API surface, versioning, and backward compatibility consistent across all three.</p>
+      <p>Lately I've been building <span class="kw">AI-powered developer tooling</span> — an automated code-review agent and LLM-gated CI — alongside a cross-platform end-to-end test-automation framework, with 200+ pull requests merged in the past year. I'm at my best driving API consistency and release reliability across native platform teams, and — while Chartboost was part of Take-Two — I partnered directly with studios like Zynga and 2K Games to integrate and debug our technologies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SDK ADOPTION ===================== -->
+<section class="block">
+  <div class="wrap adopt">
+    <div class="kicker">Impact</div>
+    <h2>SDK Adoption — the Chartboost Mediation ecosystem</h2>
+    <p class="sub">Public distribution of the mediation &amp; core SDKs, 17 ad-network adapters, and Unity tooling I own — 26 packages across npm and NuGet, adopted from independent studios to leaders like Zynga.</p>
+    <div class="kpis">
+      <div class="kpi hero"><div class="num">515K+</div><div class="lbl">Total downloads<br><span>26 packages · all-time</span></div></div>
+      <div class="kpi"><div class="num">326K+</div><div class="lbl">npm downloads<br><span>all-time</span></div></div>
+      <div class="kpi"><div class="num">189K+</div><div class="lbl">NuGet downloads<br><span>all-time</span></div></div>
+      <div class="kpi"><div class="num">26</div><div class="lbl">Public packages<br><span>SDKs · 17 adapters · tools</span></div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-t="npm">npm</button>
+      <button data-t="nuget">NuGet</button>
+    </div>
+
+    <div class="tabpanel" data-p="npm">
+      <figure class="chart-fig">
+        <figcaption>Downloads by package · npm · all-time</figcaption>
+        <div id="npm-tree" class="treemap"></div>
+        <div class="tmlegend"><span><i style="background:#f6c445"></i>Mediation SDK</span><span><i style="background:#db7a2a"></i>Ad-network adapter</span><span style="margin-left:auto">Tile area = downloads · hover for detail</span></div>
+        <p class="src">All-time npm downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add ~116K more across 9 packages.</p>
+      </figure>
+    </div>
+
+    <div class="tabpanel" data-p="nuget" hidden>
+      <figure class="chart-fig">
+        <figcaption>Downloads by package · NuGet · all-time</figcaption>
+        <div id="nuget-tree" class="treemap"></div>
+        <div class="tmlegend"><span><i style="background:#f6c445"></i>Mediation SDK</span><span><i style="background:#db7a2a"></i>Ad-network adapter</span><span style="margin-left:auto">Tile area = downloads · hover for detail</span></div>
+        <p class="src">All-time NuGet downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add ~74K more across 9 packages.</p>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="kicker">Experience</div>
+    <h2>Where I've spent 7+ years</h2>
+    <p class="sub">Shipping cross-platform SDKs and the tooling that keeps them reliable.</p>
+
+    <div class="tl">
+      <div class="role-blk">
+        <h3>Senior Software Engineer, Unity / SDK Platform <span class="co">· Chartboost</span></h3>
+        <div class="meta">Jun 2022 – Present <span class="sep">•</span> Austin, Texas</div>
+        <p style="color:var(--mut)">I own and maintain the <span class="kw">Chartboost Mediation and Core Unity SDKs</span> — open-source ad-mediation SDKs distributed via Unity UPM and NuGet. My work lives at the seam between managed and native code: I build the C# wrappers that bridge Android (Java/Kotlin) and iOS (Objective-C/Swift) into Unity, and I ship features <span class="kw">coordinated in lockstep across all three platforms</span>.</p>
+        <ul>
+          <li>Built <span class="kw">AI-powered developer tooling</span> — an automated Unity code-review agent and an LLM-based review gate wired into CI, plus custom release-automation skills.</li>
+          <li>Designed a <span class="kw">cross-platform end-to-end test-automation framework</span> (Maestro) with TestRail/Allure reporting and BrowserStack device execution.</li>
+          <li>Architected <span class="kw">CI/CD</span> on GitHub Actions + Fastlane: a single required PR gate, Slack reporting, self-healing Unity licensing, and iOS canary builds for a Bazel migration.</li>
+          <li>Merged <span class="kw">200+ pull requests in the past year</span>; maintain 20+ public Unity ad-network adapters and cloud-updatable (AWS S3) adapter tooling.</li>
+          <li>While Chartboost was a Take-Two company (through early 2025), partnered directly with <span class="kw">Zynga and 2K Games</span> teams to integrate and debug our technologies.</li>
+        </ul>
+        <div class="tags">
+          <span>Unity · C#</span><span>iOS · Obj-C/Swift</span><span>Android · Java/Kotlin</span>
+          <span>Native ↔ Unity FFI</span><span>GitHub Actions</span><span>Bazel</span><span>Claude Code · LLM-gated CI</span>
+        </div>
+      </div>
+
+      <div class="role-blk">
+        <h3>Software Engineer, Client / SDK <span class="co">· Tilting Point</span></h3>
+        <div class="meta">Feb 2019 – Jun 2022 <span class="sep">•</span> New York, New York</div>
+        <p style="color:var(--mut)">Supported every game shipping with the Tilting Point SDK and drove its evolution from a <span class="kw">monolithic legacy Unity package into a modular, package-based SDK</span>. Spanned <span class="kw">C#, Objective-C, Java, and C++</span> with deep third-party SDK integration (Leanplum, Amplitude, Adjust, AppsFlyer, Firebase, Helpshift, IronSource).</p>
+        <p style="color:var(--mut); margin-top:12px"><span class="kw">Shipped titles I contributed to:</span></p>
+        <div class="titles">
+          <figure><img src="{{ '/assets/images/experience/spongebob.png' | relative_url }}" alt="SpongeBob: Krusty Cook-Off"><figcaption>SpongeBob<br>Krusty Cook-Off</figcaption></figure>
+          <figure><img src="{{ '/assets/images/experience/terragenesis.png' | relative_url }}" alt="TerraGenesis"><figcaption>TerraGenesis</figcaption></figure>
+          <figure><img src="{{ '/assets/images/experience/zombieland.png' | relative_url }}" alt="Zombieland: AFK Survival"><figcaption>Zombieland<br>AFK Survival</figcaption></figure>
+          <figure><img src="{{ '/assets/images/experience/languinis.png' | relative_url }}" alt="Languinis"><figcaption>Languinis</figcaption></figure>
+          <figure><img src="{{ '/assets/images/experience/landfall.png' | relative_url }}" alt="TerraGenesis: Landfall"><figcaption>TerraGenesis<br>Landfall</figcaption></figure>
+        </div>
+        <div class="trailers">
+          <div class="v"><iframe src="https://www.youtube.com/embed/j-1W0IIkYYw" title="SpongeBob: Krusty Cook-Off – Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="v"><iframe src="https://www.youtube.com/embed/dPyyDXc3hFs" title="TerraGenesis 5.0 Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="v"><iframe src="https://www.youtube.com/embed/X8D6mTx_UaI" title="Zombieland AFK Survival" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        </div>
+        <p style="color:var(--mut); margin-top:14px">Additional shipped titles include Warhammer: Chaos &amp; Conquest, Sneaker Craft, and M&amp;M's Adventure. <span class="kw">TerraGenesis: Landfall</span> was additional contractor work — I helped bring it to release and industry standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // [label, all-time downloads, isMediation] — mediation SDK + 17 adapters
+  var NPM_TREE=[["Mediation SDK",30324,1],["AdMob",14590],["Google Bidding",14056],["ironSource",12763],["Pangle",11527],["Verve",11334],["Vungle",11237],["AppLovin",11193],["Mintegral",10941],["Unity Ads",10767],["Chartboost",10744],["InMobi",10585],["MobileFuse",10416],["Amazon APS",10155],["Meta",9681],["BidMachine",9619],["HyprMX",8105],["Digital Turbine",1769]];
+  var NUGET_TREE=[["Mediation SDK",15973,1],["AdMob",15863],["Google Bidding",15756],["ironSource",9519],["Pangle",7520],["AppLovin",6685],["BidMachine",6617],["Chartboost",4760],["Amazon APS",4403],["Verve",4345],["InMobi",4146],["Meta",4129],["Vungle",3869],["Unity Ads",3673],["MobileFuse",3492],["Mintegral",2751],["Digital Turbine",1430],["HyprMX",576]];
+  function commas(n){return n.toLocaleString("en-US")}
+  function squarify(items,x,y,w,h){
+    var rects=[],i=0,cx=x,cy=y,cw=w,ch=h;
+    function worst(r,len){var s=0,mx=0,mn=Infinity;r.forEach(function(a){s+=a.area;if(a.area>mx)mx=a.area;if(a.area<mn)mn=a.area;});return Math.max(len*len*mx/(s*s),s*s/(len*len*mn));}
+    while(i<items.length){
+      var len=Math.min(cw,ch), row=[items[i]], j=i+1;
+      while(j<items.length){ if(worst(row.concat([items[j]]),len)<=worst(row,len)){row.push(items[j]);j++;} else break; }
+      var s=0;row.forEach(function(a){s+=a.area;});var thick=s/len,off=0;
+      if(cw>=ch){ row.forEach(function(a){var hh=len*(a.area/s);rects.push({x:cx,y:cy+off,w:thick,h:hh,item:a});off+=hh;}); cx+=thick;cw-=thick; }
+      else { row.forEach(function(a){var ww=len*(a.area/s);rects.push({x:cx+off,y:cy,w:ww,h:thick,item:a});off+=ww;}); cy+=thick;ch-=thick; }
+      i=j;
+    }
+    return rects;
+  }
+  function drawTree(id,data){
+    var host=document.getElementById(id); if(!host) return;
+    var W=host.clientWidth, H=host.clientHeight||360; if(!W) return;
+    var items=data.map(function(d){return {label:d[0],val:d[1],med:d[2]};}).sort(function(a,b){return b.val-a.val;});
+    var total=0;items.forEach(function(a){total+=a.val;});var scale=W*H/total;
+    items.forEach(function(a){a.area=a.val*scale;});
+    var rects=squarify(items,0,0,W,H), g=2;
+    host.innerHTML="";
+    var tip=document.createElement("div"); tip.className="tmtip"; tip.hidden=true;
+    rects.forEach(function(r){
+      var t=document.createElement("div"); t.className="tile";
+      t.style.left=(r.x+g/2)+"px"; t.style.top=(r.y+g/2)+"px";
+      t.style.width=Math.max(0,r.w-g)+"px"; t.style.height=Math.max(0,r.h-g)+"px";
+      t.style.background=r.item.med?"#f6c445":"#db7a2a";
+      if(r.w>58&&r.h>26){var l=document.createElement("div");l.className="tl";l.textContent=r.item.label;t.appendChild(l);}
+      if(r.w>64&&r.h>44){var v=document.createElement("div");v.className="tv";v.textContent=commas(r.item.val);t.appendChild(v);}
+      (function(it){
+        var hb;
+        t.addEventListener("mouseenter",function(){ hb=host.getBoundingClientRect(); });
+        t.addEventListener("mousemove",function(e){
+          if(!hb) hb=host.getBoundingClientRect();
+          tip.hidden=false; tip.innerHTML='<b>'+commas(it.val)+'</b> downloads<br>'+it.label;
+          var lx=e.clientX-hb.left, ly=e.clientY-hb.top, above=ly>46;
+          tip.style.left=Math.max(56,Math.min(W-56,lx))+"px";
+          tip.style.top=(above?ly-14:ly+18)+"px";
+          tip.style.transform="translate(-50%,"+(above?"-100%":"0")+")";
+        });
+        t.addEventListener("mouseleave",function(){tip.hidden=true;});
+      })(r.item);
+      host.appendChild(t);
+    });
+    host.appendChild(tip);
+  }
+  function activeTab(){var b=document.querySelector(".tabs button.active");return b?b.getAttribute("data-t"):"npm";}
+  function drawActive(){ if(activeTab()==="nuget") drawTree("nuget-tree",NUGET_TREE); else drawTree("npm-tree",NPM_TREE); }
+  var tbtns=document.querySelectorAll(".tabs button");
+  tbtns.forEach(function(b){b.addEventListener("click",function(){
+    if(b.classList.contains("active")) return;
+    tbtns.forEach(function(x){x.classList.remove("active")}); b.classList.add("active");
+    document.querySelectorAll(".tabpanel").forEach(function(p){p.hidden=(p.getAttribute("data-p")!==b.getAttribute("data-t"));});
+    drawActive();
+  });});
+  if(location.hash==="#nuget"){var nb=document.querySelector('.tabs button[data-t="nuget"]'); if(nb) nb.click();}
+  else drawActive();
+  var rt; window.addEventListener("resize",function(){clearTimeout(rt); rt=setTimeout(drawActive,180);});
+})();
+</script>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Santiago Castaneda Munoz — Resume 2026</title>
+<style>
+  :root{
+    --ink:#1d1a16; --muted:#6b6154; --line:#e6e0d7;
+    --accent:#b45309;         /* amber-700 — readable on white */
+    --accent-dk:#92400e; --accent-soft:#fbf0e2;
+    --bg:#f6f3ee;
+    --side:#262320; --side-2:#33302a; --side-head:#e9b877; --side-ink:#eae3d9; --side-mut:#b3a998;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.43; font-size:10.5px; padding:24px;
+  }
+  .page{
+    width:8.5in; min-height:11in; margin:0 auto; background:#fff;
+    display:grid; grid-template-columns:2.55in 1fr; box-shadow:0 2px 18px rgba(0,0,0,.10);
+  }
+  /* ---------- Sidebar ---------- */
+  .side{background:var(--side); color:var(--side-ink); padding:22px 18px;}
+  .side h1{font-size:18.5px; line-height:1.15; color:#fff; letter-spacing:.2px}
+  .side .role{color:var(--side-head); font-weight:600; font-size:10.8px; margin-top:5px; letter-spacing:.5px; text-transform:uppercase}
+  .side .contact{margin-top:14px; font-size:10.3px; line-height:1.22}
+  .side .contact p{display:flex; align-items:center; gap:8px; margin-bottom:6px; word-break:break-word}
+  .side .contact svg{width:13px; height:13px; flex:none; fill:var(--side-head)}
+  .side .contact a{color:var(--side-ink); text-decoration:none}
+  .side .contact a:hover{text-decoration:underline}
+  .side-sec{margin-top:16px}
+  .side-sec h2{
+    font-size:10.7px; text-transform:uppercase; letter-spacing:1.4px; color:var(--side-head);
+    border-bottom:1px solid color-mix(in srgb, var(--side-head) 35%, transparent); padding-bottom:4px; margin-bottom:8px;
+  }
+  .side-sec .grp{margin-bottom:8px}
+  .chips{display:flex; flex-wrap:wrap; gap:5px}
+  .chip{background:color-mix(in srgb, var(--side-head) 13%, transparent); color:var(--side-ink);
+        border:1px solid color-mix(in srgb, var(--side-head) 30%, transparent);
+        border-radius:4px; padding:2px 7px; font-size:9.5px; white-space:nowrap}
+  .edu b{display:block; color:#fff; font-size:10.8px}
+  .edu span{display:block; color:var(--side-mut); font-size:9.6px; margin:1px 0}
+  .edu .award{color:var(--side-head)}
+  /* ---------- Main ---------- */
+  .main{padding:30px 30px 24px}
+  .summary{font-size:10.7px; color:#333f4c}
+  .main h2{
+    font-size:12.3px; text-transform:uppercase; letter-spacing:1.2px; color:var(--accent);
+    margin:17px 0 9px; padding-bottom:5px; border-bottom:2px solid var(--accent-soft);
+  }
+  .impact{display:flex; gap:10px; margin:13px 0 5px}
+  .impact .cell{flex:1; text-align:center; background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 22%, #ffffff); border-radius:8px; padding:8px 6px}
+  .impact .cell .n{font-size:16px; font-weight:800; color:var(--accent); line-height:1}
+  .impact .cell .l{font-size:8.2px; color:#586472; text-transform:uppercase; letter-spacing:.4px; margin-top:4px; line-height:1.22}
+  .job{margin-bottom:13px}
+  .job-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .job-head .t{font-size:12px; font-weight:700}
+  .job-head .t .co{color:var(--accent)}
+  .job-head .d{font-size:9.2px; color:var(--muted); white-space:nowrap; text-align:right}
+  ul.pts{list-style:none; margin:0}
+  ul.pts li{position:relative; padding-left:13px; margin-bottom:4px; font-size:10.2px; color:#333f4c}
+  ul.pts li::before{content:""; position:absolute; left:0; top:6px; width:4px; height:4px; background:var(--accent); border-radius:50%}
+  .kw{font-weight:600; color:var(--ink)}
+  a.lnk{color:var(--accent); text-decoration:none; font-weight:600; border-bottom:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
+  a.lnk:hover{border-bottom-color:var(--accent)}
+  .proj{margin-bottom:10px}
+  .proj .t{font-size:10.8px; font-weight:700}
+  .proj .t a{font-size:9.2px; margin-left:6px}
+  .proj p{font-size:10.1px; color:#465264; margin-top:3px}
+  .footer-note{margin-top:16px; font-size:8.8px; color:#93a0b2; text-align:center}
+  @media print{
+    body{background:#fff; padding:0; font-size:11px}
+    .page{box-shadow:none; width:auto; min-height:auto}
+    @page{size:Letter; margin:0}
+  }
+  @media screen and (max-width:820px){ .page{grid-template-columns:1fr; width:100%} }
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <h1>Santiago<br>Castaneda Munoz</h1>
+    <div class="role">Senior Software Engineer</div>
+    <div class="contact">
+      <p><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg> Austin, Texas</p>
+      <p><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> <a href="mailto:santiagocm98@hotmail.com">santiagocm98@hotmail.com</a></p>
+      <p><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> <a href="https://www.linkedin.com/in/santiagocastanedamunoz/">in/santiagocastanedamunoz</a></p>
+      <p><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg> <a href="https://github.com/SCastanedaMunoz">github.com/SCastanedaMunoz</a></p>
+    </div>
+
+    <div class="side-sec">
+      <h2>Core Strengths</h2>
+      <div class="chips">
+        <span class="chip">Cross-platform SDKs</span>
+        <span class="chip">API &amp; versioning design</span>
+        <span class="chip">Native ↔ Unity bridging (FFI)</span>
+        <span class="chip">AI dev tooling</span>
+        <span class="chip">CI/CD &amp; release automation</span>
+        <span class="chip">Test automation</span>
+      </div>
+    </div>
+
+    <div class="side-sec">
+      <h2>Languages</h2>
+      <div class="chips">
+        <span class="chip">C#</span><span class="chip">C++</span>
+        <span class="chip">Objective-C</span><span class="chip">Java / Kotlin</span>
+        <span class="chip">Swift</span><span class="chip">JavaScript / TS</span>
+        <span class="chip">Python</span>
+      </div>
+    </div>
+
+    <div class="side-sec">
+      <h2>Platforms &amp; Engines</h2>
+      <div class="chips">
+        <span class="chip">Unity</span><span class="chip">Unreal Engine</span>
+        <span class="chip">iOS</span><span class="chip">Android</span><span class="chip">UWP</span>
+      </div>
+    </div>
+
+    <div class="side-sec">
+      <h2>Tooling &amp; Infra</h2>
+      <div class="chips">
+        <span class="chip">GitHub Actions</span><span class="chip">Fastlane</span>
+        <span class="chip">Bazel</span><span class="chip">Unity UPM</span>
+        <span class="chip">NuGet</span><span class="chip">AWS S3</span>
+        <span class="chip">Maestro E2E</span><span class="chip">TestRail</span>
+        <span class="chip">Allure</span><span class="chip">BrowserStack</span>
+      </div>
+    </div>
+
+    <div class="side-sec">
+      <h2>AI / LLM</h2>
+      <div class="chips">
+        <span class="chip">Claude / Claude Code</span>
+        <span class="chip">Agentic code review</span>
+        <span class="chip">LLM-gated CI</span>
+        <span class="chip">Skill / agent authoring</span>
+      </div>
+    </div>
+
+    <div class="side-sec">
+      <h2>Education</h2>
+      <div class="edu grp">
+        <b>B.S. — Full Sail University</b>
+        <span>Human-Computer Interaction</span>
+        <span>2016 – 2018 · GPA 3.93 / 4.0</span>
+        <span class="award">Valedictorian</span>
+      </div>
+      <div class="edu grp">
+        <b>Full Stack Web Development</b>
+        <span>The University of Texas at Austin</span>
+        <span>2020 – 2021 · GPA 4.0 / 4.0 · Certified</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+    <h2>Summary</h2>
+    <p class="summary">
+      Software engineer with <span class="kw">7+ years</span> building
+      <span class="kw">cross-platform, cross-language SDKs</span> for the mobile gaming and ad-tech
+      industry. Owns the Unity layer of a production ad-mediation platform, shipping features in
+      lockstep across <span class="kw">Unity (C#), iOS (Obj-C/Swift), and Android (Java/Kotlin)</span>
+      and standardizing API surface, versioning, and backward compatibility across all three.
+      Recently built <span class="kw">AI-powered developer tooling</span> — an automated code-review
+      agent and LLM-gated CI — and a cross-platform end-to-end test-automation framework. Effective
+      driving technical direction and API consistency across native platform teams without formal
+      authority.
+    </p>
+
+    <div class="impact">
+      <div class="cell"><div class="n">7+</div><div class="l">Years<br>Experience</div></div>
+      <div class="cell"><div class="n">200+</div><div class="l">PRs merged<br>/ year</div></div>
+      <div class="cell"><div class="n">515K+</div><div class="l">package downloads<br>npm + NuGet</div></div>
+      <div class="cell"><div class="n">20+</div><div class="l">Public Unity<br>adapters</div></div>
+    </div>
+
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="t">Senior Software Engineer, Unity / SDK Platform — <span class="co">Chartboost</span></div>
+        <div class="d">Jun 2022 – Present<br>Austin, TX</div>
+      </div>
+      <ul class="pts">
+        <li>Own and maintain the <span class="kw">Chartboost Mediation and Core Unity SDKs</span> (open source) plus an ecosystem of <span class="kw">20+ public Unity ad-network adapters</span>, distributed via Unity UPM and NuGet, with C# wrappers bridging Android (Java/Kotlin) and iOS (Obj-C/Swift) native layers.</li>
+        <li>Ship features <span class="kw">coordinated in lockstep across the Unity, iOS, and Android SDKs</span>, driving a consistent public API surface, versioning strategy, and backward compatibility across three platforms and languages.</li>
+        <li>Built <span class="kw">AI-powered developer tooling</span>: an automated Unity code-review agent and an LLM-based review gate integrated into CI, plus custom release-automation skills — cutting review turnaround and manual release toil.</li>
+        <li>Designed and built a <span class="kw">cross-platform end-to-end test-automation framework</span> (Maestro-based) with TestRail and Allure reporting and BrowserStack device execution, materially raising release confidence across the SDK family.</li>
+        <li>Architected <span class="kw">CI/CD</span> on GitHub Actions + Fastlane: a single required PR gate for branch protection, Slack reporting, self-healing Unity license activation, and iOS canary builds supporting a Bazel migration.</li>
+        <li>Built <span class="kw">Unity Editor tooling</span> for cloud-based (AWS S3) adapter updates and added sync/async native bridging; merged <span class="kw">200+ pull requests in the past year</span> across SDK and tooling repos.</li>
+        <li>While Chartboost was a Take-Two company (through early 2025), partnered directly with <span class="kw">Zynga and 2K Games</span> engineering teams to integrate, debug, and tailor Chartboost technologies to their titles; provided technical leadership for the Unity team.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="t">Software Engineer, Client / SDK — <span class="co">Tilting Point</span></div>
+        <div class="d">Feb 2019 – Jun 2022<br>New York, NY</div>
+      </div>
+      <ul class="pts">
+        <li>Developed and optimized multi-platform features across <span class="kw">C#, Objective-C, Java, and C++</span>, ensuring performance and compatibility for AAA mobile titles.</li>
+        <li>Evolved the in-house SDK from a monolithic Unity package into a <span class="kw">modular, package-based SDK</span> where studios integrate only the features they need; distributed via GitHub Packages and Unity Package Manager.</li>
+        <li>Integrated and extended third-party SDKs — <span class="kw">Leanplum, Amplitude, Adjust, AppsFlyer, Firebase, Helpshift, IronSource</span> — adding custom functionality to meet studio requirements.</li>
+        <li>Spearheaded <span class="kw">iOS 14 transition and compliance</span>; designed a generic <span class="kw">CI/CD pipeline for Android, iOS, and UWP</span>; optimized mobile speed, memory, and app size.</li>
+        <li>Contributed to shipped cross-platform titles including <span class="kw">SpongeBob: Krusty Cook-Off, Warhammer: Chaos &amp; Conquest, TerraGenesis, Zombieland: AFK Survival, Languinis, Sneaker Craft, and M&amp;M's Adventure</span>; provided additional contractor work to bring <span class="kw">TerraGenesis: Landfall</span> to release and industry standards.</li>
+      </ul>
+    </div>
+
+    <h2>Selected Projects</h2>
+    <div class="proj">
+      <div class="t">Chartboost Mediation &amp; Core Unity SDKs
+        <a class="lnk" href="https://github.com/ChartBoost/chartboost-mediation-unity-sdk">github</a>
+        <a class="lnk" href="https://www.npmjs.com/package/com.chartboost.mediation">npm</a>
+        <a class="lnk" href="https://www.nuget.org/packages/Chartboost.CSharp.Mediation.Unity">nuget</a></div>
+      <p>Open-source Unity ad-mediation SDKs bridging Android &amp; iOS native layers — UPM/NuGet distribution, 20+ public ad-network adapters, and cloud-updatable adapters. The public mirror of the internal monorepo work I own — 26 public packages with 515K+ downloads across npm and NuGet.</p>
+    </div>
+    <div class="proj">
+      <div class="t">AI-Powered Developer Tooling &amp; Test Automation <span style="font-weight:400;color:var(--muted);font-size:8.8px">— Chartboost (internal)</span></div>
+      <p>An automated Unity code-review agent and an LLM-gated CI review pipeline, plus custom release-automation skills — alongside a Maestro-based cross-platform end-to-end test-automation framework with TestRail, Allure, and BrowserStack device execution.</p>
+    </div>
+    <div class="footer-note">
+      Portfolio: scastanedamunoz.github.io &nbsp;·&nbsp; References &amp; shipped-title details available on request
+    </div>
+  </main>
+</div>
+</body>
+</html>
+
+

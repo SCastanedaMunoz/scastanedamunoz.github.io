@@ -1,0 +1,49 @@
+---
+layout: base
+title: "Matchmaker"
+permalink: /projects/matchmaker/
+---
+
+<section class="block">
+  <div class="wrap">
+    <a class="back" href="{{ '/projects/' | relative_url }}">← Back to Projects</a>
+    <div class="gamehero" style="margin-top:16px">
+      <img class="icon" src="{{ '/assets/images/projects/matchmaker_icon.png' | relative_url }}" alt="Matchmaker icon">
+      <div>
+        <div class="kicker" style="margin-bottom:4px">Lead Programmer · Unity · iOS &amp; Android</div>
+        <h2 style="margin:0">Matchmaker</h2>
+        <div class="tags" style="margin-top:10px"><span>Unity · C#</span><span>Custom editor tools</span><span>Mobile optimization</span><span>Shipped (delisted)</span></div>
+      </div>
+    </div>
+
+    <div class="carousel">
+      <div class="viewport"><div class="track">
+        <img src="{{ '/assets/images/games/matchmaker/mainmenu.png' | relative_url }}" alt="Main menu">
+        <img src="{{ '/assets/images/games/matchmaker/levelbg.png' | relative_url }}" alt="In-game art — animals &amp; environment">
+        <img src="{{ '/assets/images/games/matchmaker/tutorial.png' | relative_url }}" alt="Characters &amp; tutorial art">
+        <img src="{{ '/assets/images/projects/matchmaker_levelselection.gif' | relative_url }}" alt="Data-driven level-selection system (runtime)">
+        <img src="{{ '/assets/images/projects/matchmaker_tool.gif' | relative_url }}" alt="In-editor drag-and-drop waypoint tool">
+      </div></div>
+      <button class="cnav prev" aria-label="Previous">‹</button>
+      <button class="cnav next" aria-label="Next">›</button>
+      <div class="dots"></div>
+      <div class="cap"></div>
+    </div>
+
+    <div class="prose">
+      <div class="subh">Overview</div>
+      <p>Matchmaker is a 2D top-down mobile puzzle game with a twist on the match genre: players match all animals of the <span class="kw">same</span> type while keeping <span class="kw">different</span> animals apart. Each animal moves along its own pattern — when two of the same color collide they make a match, but two different colors bounce off in opposite directions, so every board is a small, dynamic timing puzzle.</p>
+      <p>The concept started as a school project by our team lead; after graduating from Full Sail, a group of us — all international students who wanted to keep making games — brought on two artists and a musician and rebuilt it for release. We went from prototype to a fully mechanical build within the first month, then spent the following months on playtesting, balancing, art direction, and theme, and shipped to the App Store and Google Play.</p>
+
+      <div class="subh">My role</div>
+      <p>I was the <span class="kw">lead (and primary) programmer</span>. Because we were targeting mobile, most systems had to be rebuilt from the original prototype, which meant learning the ins and outs of mobile performance and resource management early. In the first couple of months I built the core loop and supporting systems: <span class="kw">character movement, scene transitions, save data, stars &amp; rewards, level selection, and the player tutorial</span>.</p>
+      <p>Keeping the codebase organized mattered — I was the only engineer, but the designers and artists needed to understand where and how to plug content in. So I leaned heavily into building tools and data-driven systems that let non-engineers extend the game safely.</p>
+
+      <div class="subh">Editor tooling</div>
+      <p>The two pieces I'm proudest of are in the carousel above. The first is a <span class="kw">drag-and-drop waypoint tool</span>: designers place and shape movement paths directly in the Unity editor, and the characters auto-configure and follow those waypoints at runtime — no code changes needed to author a new level's motion. The second is a <span class="kw">data-driven level-selection menu</span> that scales automatically as levels are added, so the menu never needed hand-editing as content grew.</p>
+      <p>I also built the tutorial as a sequence of scripted, event-driven beats, which taught me a lot about introducing mechanics gradually and gave the team a reusable way to surface guidance exactly when a new mechanic appears.</p>
+
+      <p style="font-size:13px; opacity:.7; margin-top:18px">Source and full assets live in a private repository being brought up to current coding standards.</p>
+    </div>
+  </div>
+</section>

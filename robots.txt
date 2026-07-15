@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://scastanedamunoz.github.io/sitemap.xml
