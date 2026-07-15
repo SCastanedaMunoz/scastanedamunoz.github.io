@@ -66,8 +66,8 @@ permalink: /
     <div class="stats">
       <div class="stat"><div class="n">7+</div><div class="l">Years experience</div></div>
       <div class="stat"><div class="n">200+</div><div class="l">PRs merged / year</div></div>
-      <div class="stat"><div class="n">515K+</div><div class="l">Package downloads</div></div>
-      <div class="stat"><div class="n">26</div><div class="l">Public packages</div></div>
+      <div class="stat"><div class="n">{{ site.data.adoption.total_display }}</div><div class="l">Package downloads</div></div>
+      <div class="stat"><div class="n">{{ site.data.adoption.packages }}</div><div class="l">Public packages</div></div>
     </div>
     <div style="margin-top:30px">
       <div class="kicker" style="margin-bottom:8px">Languages I ship in</div>
@@ -108,12 +108,12 @@ permalink: /
   <div class="wrap adopt">
     <div class="kicker">Impact</div>
     <h2>SDK Adoption — the Chartboost Mediation ecosystem</h2>
-    <p class="sub">Public distribution of the mediation &amp; core SDKs, 17 ad-network adapters, and Unity tooling I own — 26 packages across npm and NuGet, adopted from independent studios to leaders like Zynga.</p>
+    <p class="sub">Public distribution of the mediation &amp; core SDKs, 17 ad-network adapters, and Unity tooling I own — {{ site.data.adoption.packages }} packages across npm and NuGet, adopted from independent studios to leaders like Zynga.</p>
     <div class="kpis">
-      <div class="kpi hero"><div class="num">515K+</div><div class="lbl">Total downloads<br><span>26 packages · all-time</span></div></div>
-      <div class="kpi"><div class="num">326K+</div><div class="lbl">npm downloads<br><span>all-time</span></div></div>
-      <div class="kpi"><div class="num">189K+</div><div class="lbl">NuGet downloads<br><span>all-time</span></div></div>
-      <div class="kpi"><div class="num">26</div><div class="lbl">Public packages<br><span>SDKs · 17 adapters · tools</span></div></div>
+      <div class="kpi hero"><div class="num">{{ site.data.adoption.total_display }}</div><div class="lbl">Total downloads<br><span>{{ site.data.adoption.packages }} packages · all-time</span></div></div>
+      <div class="kpi"><div class="num">{{ site.data.adoption.npm_display }}</div><div class="lbl">npm downloads<br><span>all-time</span></div></div>
+      <div class="kpi"><div class="num">{{ site.data.adoption.nuget_display }}</div><div class="lbl">NuGet downloads<br><span>all-time</span></div></div>
+      <div class="kpi"><div class="num">{{ site.data.adoption.packages }}</div><div class="lbl">Public packages<br><span>SDKs · 17 adapters · tools</span></div></div>
     </div>
 
     <div class="tabs">
@@ -126,7 +126,7 @@ permalink: /
         <figcaption>Downloads by package · npm · all-time</figcaption>
         <div id="npm-tree" class="treemap"></div>
         <div class="tmlegend"><span><i style="background:#f6c445"></i>Mediation SDK</span><span><i style="background:#db7a2a"></i>Ad-network adapter</span><span style="margin-left:auto">Tile area = downloads · hover for detail</span></div>
-        <p class="src">All-time npm downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add ~116K more across 9 packages.</p>
+        <p class="src">All-time npm downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add {{ site.data.adoption.npm_extras_display }} more across 9 packages.</p>
       </figure>
     </div>
 
@@ -135,7 +135,7 @@ permalink: /
         <figcaption>Downloads by package · NuGet · all-time</figcaption>
         <div id="nuget-tree" class="treemap"></div>
         <div class="tmlegend"><span><i style="background:#f6c445"></i>Mediation SDK</span><span><i style="background:#db7a2a"></i>Ad-network adapter</span><span style="margin-left:auto">Tile area = downloads · hover for detail</span></div>
-        <p class="src">All-time NuGet downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add ~74K more across 9 packages.</p>
+        <p class="src">All-time NuGet downloads — mediation SDK + 17 adapters. The Core SDK &amp; Unity tools add {{ site.data.adoption.nuget_extras_display }} more across 9 packages.</p>
       </figure>
     </div>
   </div>
@@ -192,8 +192,8 @@ permalink: /
 <script>
 (function(){
   // [label, all-time downloads, isMediation] — mediation SDK + 17 adapters
-  var NPM_TREE=[["Mediation SDK",30324,1],["AdMob",14590],["Google Bidding",14056],["ironSource",12763],["Pangle",11527],["Verve",11334],["Vungle",11237],["AppLovin",11193],["Mintegral",10941],["Unity Ads",10767],["Chartboost",10744],["InMobi",10585],["MobileFuse",10416],["Amazon APS",10155],["Meta",9681],["BidMachine",9619],["HyprMX",8105],["Digital Turbine",1769]];
-  var NUGET_TREE=[["Mediation SDK",15973,1],["AdMob",15863],["Google Bidding",15756],["ironSource",9519],["Pangle",7520],["AppLovin",6685],["BidMachine",6617],["Chartboost",4760],["Amazon APS",4403],["Verve",4345],["InMobi",4146],["Meta",4129],["Vungle",3869],["Unity Ads",3673],["MobileFuse",3492],["Mintegral",2751],["Digital Turbine",1430],["HyprMX",576]];
+  var NPM_TREE={{ site.data.adoption.npm_tree | jsonify }};
+  var NUGET_TREE={{ site.data.adoption.nuget_tree | jsonify }};
   function commas(n){return n.toLocaleString("en-US")}
   function squarify(items,x,y,w,h){
     var rects=[],i=0,cx=x,cy=y,cw=w,ch=h;

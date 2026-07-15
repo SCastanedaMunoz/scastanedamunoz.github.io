@@ -1,0 +1,195 @@
+{
+  "updated": "2026-07-15",
+  "packages": 26,
+  "total_display": "523K+",
+  "npm_display": "334K+",
+  "nuget_display": "189K+",
+  "npm_adapters_display": "187,491",
+  "npm_extras_display": "~117K",
+  "nuget_adapters_display": "99,534",
+  "nuget_extras_display": "~74K",
+  "npm_tree": [
+    [
+      "Mediation SDK",
+      30324,
+      1
+    ],
+    [
+      "AdMob",
+      14590,
+      0
+    ],
+    [
+      "Google Bidding",
+      14056,
+      0
+    ],
+    [
+      "ironSource",
+      12763,
+      0
+    ],
+    [
+      "Pangle",
+      11527,
+      0
+    ],
+    [
+      "BidMachine",
+      11399,
+      0
+    ],
+    [
+      "Verve",
+      11334,
+      0
+    ],
+    [
+      "Vungle",
+      11237,
+      0
+    ],
+    [
+      "AppLovin",
+      11193,
+      0
+    ],
+    [
+      "Mintegral",
+      10941,
+      0
+    ],
+    [
+      "Unity Ads",
+      10767,
+      0
+    ],
+    [
+      "Chartboost",
+      10744,
+      0
+    ],
+    [
+      "InMobi",
+      10585,
+      0
+    ],
+    [
+      "MobileFuse",
+      10416,
+      0
+    ],
+    [
+      "Meta",
+      9681,
+      0
+    ],
+    [
+      "Amazon APS",
+      9489,
+      0
+    ],
+    [
+      "Digital Turbine",
+      8664,
+      0
+    ],
+    [
+      "HyprMX",
+      8105,
+      0
+    ]
+  ],
+  "nuget_tree": [
+    [
+      "Mediation SDK",
+      15973,
+      1
+    ],
+    [
+      "AdMob",
+      15863,
+      0
+    ],
+    [
+      "Google Bidding",
+      15756,
+      0
+    ],
+    [
+      "ironSource",
+      9519,
+      0
+    ],
+    [
+      "Pangle",
+      7520,
+      0
+    ],
+    [
+      "AppLovin",
+      6685,
+      0
+    ],
+    [
+      "BidMachine",
+      6617,
+      0
+    ],
+    [
+      "Chartboost",
+      4760,
+      0
+    ],
+    [
+      "Amazon APS",
+      4403,
+      0
+    ],
+    [
+      "Verve",
+      4345,
+      0
+    ],
+    [
+      "InMobi",
+      4146,
+      0
+    ],
+    [
+      "Meta",
+      4129,
+      0
+    ],
+    [
+      "Vungle",
+      3869,
+      0
+    ],
+    [
+      "Unity Ads",
+      3673,
+      0
+    ],
+    [
+      "MobileFuse",
+      3492,
+      0
+    ],
+    [
+      "Mintegral",
+      2751,
+      0
+    ],
+    [
+      "Digital Turbine",
+      1430,
+      0
+    ],
+    [
+      "HyprMX",
+      576,
+      0
+    ]
+  ]
+}
