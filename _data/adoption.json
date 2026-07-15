@@ -1,10 +1,10 @@
 {
   "updated": "2026-07-15",
   "packages": 26,
-  "total_display": "523K+",
-  "npm_display": "334K+",
+  "total_display": "522K+",
+  "npm_display": "333K+",
   "nuget_display": "189K+",
-  "npm_adapters_display": "187,491",
+  "npm_adapters_display": "186,161",
   "npm_extras_display": "~117K",
   "nuget_adapters_display": "99,534",
   "nuget_extras_display": "~74K",
@@ -25,6 +25,11 @@
       0
     ],
     [
+      "Chartboost",
+      12832,
+      0
+    ],
+    [
       "ironSource",
       12763,
       0
@@ -32,11 +37,6 @@
     [
       "Pangle",
       11527,
-      0
-    ],
-    [
-      "BidMachine",
-      11399,
       0
     ],
     [
@@ -65,11 +65,6 @@
       0
     ],
     [
-      "Chartboost",
-      10744,
-      0
-    ],
-    [
       "InMobi",
       10585,
       0
@@ -80,13 +75,13 @@
       0
     ],
     [
-      "Meta",
-      9681,
+      "Amazon APS",
+      10155,
       0
     ],
     [
-      "Amazon APS",
-      9489,
+      "Meta",
+      9681,
       0
     ],
     [
@@ -97,6 +92,11 @@
     [
       "HyprMX",
       8105,
+      0
+    ],
+    [
+      "BidMachine",
+      7315,
       0
     ]
   ],
