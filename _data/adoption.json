@@ -1,92 +1,87 @@
 {
-  "updated": "2026-07-27",
+  "updated": "2026-08-03",
   "packages": 26,
-  "total_display": "530K+",
-  "npm_display": "336K+",
-  "nuget_display": "193K+",
-  "npm_adapters_display": "188,008",
+  "total_display": "522K+",
+  "npm_display": "324K+",
+  "nuget_display": "197K+",
+  "npm_adapters_display": "175,456",
   "npm_extras_display": "~118K",
-  "nuget_adapters_display": "102,397",
-  "nuget_extras_display": "~75K",
+  "nuget_adapters_display": "104,739",
+  "nuget_extras_display": "~76K",
   "npm_tree": [
     [
       "Mediation SDK",
-      30880,
+      30989,
       1
     ],
     [
       "AdMob",
-      14728,
+      14820,
       0
     ],
     [
       "Google Bidding",
-      14103,
-      0
-    ],
-    [
-      "Chartboost",
-      13232,
+      14113,
       0
     ],
     [
       "ironSource",
-      12908,
+      13078,
       0
     ],
     [
       "Pangle",
-      11586,
-      0
-    ],
-    [
-      "Verve",
-      11383,
+      11605,
       0
     ],
     [
       "Vungle",
-      11365,
+      11397,
+      0
+    ],
+    [
+      "Verve",
+      11393,
       0
     ],
     [
       "AppLovin",
-      11244,
-      0
-    ],
-    [
-      "Mintegral",
-      11020,
+      11280,
       0
     ],
     [
       "Unity Ads",
-      10984,
+      11166,
+      0
+    ],
+    [
+      "Mintegral",
+      11051,
       0
     ],
     [
       "InMobi",
-      10840,
+      10890,
       0
     ],
     [
       "MobileFuse",
-      10430,
+      10438,
       0
     ],
     [
       "Amazon APS",
-      10379,
+      10414,
       0
     ],
     [
       "Meta",
-      9703,
+      9707,
       0
     ],
     [
       "Digital Turbine",
-      8675,
+      8676,
       0
     ],
     [
@@ -98,97 +93,102 @@
       "BidMachine",
       7315,
       0
+    ],
+    [
+      "Chartboost",
+      0,
+      0
     ]
   ],
   "nuget_tree": [
     [
       "AdMob",
-      16315,
+      16660,
+      0
+    ],
+    [
+      "Google Bidding",
+      16532,
       0
     ],
     [
       "Mediation SDK",
-      16239,
+      16474,
       1
     ],
     [
-      "Google Bidding",
-      16196,
-      0
-    ],
-    [
       "ironSource",
-      9725,
+      9961,
       0
     ],
     [
       "Pangle",
-      7742,
+      7899,
       0
     ],
     [
       "AppLovin",
-      6848,
+      6971,
       0
     ],
     [
       "BidMachine",
-      6785,
+      6923,
       0
     ],
     [
       "Chartboost",
-      4924,
+      5095,
       0
     ],
     [
       "Amazon APS",
-      4626,
+      4748,
       0
     ],
     [
       "Verve",
-      4457,
+      4541,
       0
     ],
     [
       "InMobi",
-      4314,
+      4469,
       0
     ],
     [
       "Meta",
-      4230,
+      4305,
       0
     ],
     [
       "Vungle",
-      3953,
+      4018,
       0
     ],
     [
       "Unity Ads",
-      3826,
+      4006,
       0
     ],
     [
       "MobileFuse",
-      3589,
+      3662,
       0
     ],
     [
       "Mintegral",
-      2817,
+      2867,
       0
     ],
     [
       "Digital Turbine",
-      1465,
+      1489,
       0
     ],
     [
       "HyprMX",
-      585,
+      593,
       0
     ]
   ]
