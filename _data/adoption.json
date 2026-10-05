@@ -1,92 +1,92 @@
 {
-  "updated": "2026-09-28",
+  "updated": "2026-10-05",
   "packages": 26,
-  "total_display": "744K+",
-  "npm_display": "521K+",
+  "total_display": "833K+",
+  "npm_display": "610K+",
   "nuget_display": "222K+",
-  "npm_adapters_display": "363,899",
-  "npm_extras_display": "~125K",
-  "nuget_adapters_display": "122,805",
+  "npm_adapters_display": "451,532",
+  "npm_extras_display": "~126K",
+  "nuget_adapters_display": "122,824",
   "nuget_extras_display": "~82K",
   "npm_tree": [
     [
       "MobileFuse",
-      188058,
+      273865,
       0
     ],
     [
       "Mediation SDK",
-      32944,
+      33272,
       1
     ],
     [
       "AdMob",
-      15111,
+      16136,
       0
     ],
     [
       "Google Bidding",
-      14388,
+      15464,
       0
     ],
     [
       "ironSource",
-      13358,
+      13434,
       0
     ],
     [
       "Pangle",
-      11969,
-      0
-    ],
-    [
-      "Unity Ads",
-      11759,
-      0
-    ],
-    [
-      "Vungle",
-      11726,
+      12361,
       0
     ],
     [
       "Verve",
-      11554,
+      11889,
+      0
+    ],
+    [
+      "Unity Ads",
+      11881,
+      0
+    ],
+    [
+      "Vungle",
+      11812,
       0
     ],
     [
       "AppLovin",
-      11411,
+      11463,
       0
     ],
     [
       "InMobi",
-      11320,
+      11446,
       0
     ],
     [
       "Mintegral",
-      11300,
+      11353,
       0
     ],
     [
       "Amazon APS",
-      10575,
+      10620,
       0
     ],
     [
       "Meta",
-      9871,
+      9924,
       0
     ],
     [
       "Digital Turbine",
-      8753,
+      8959,
       0
     ],
     [
       "HyprMX",
-      8140,
+      8153,
       0
     ],
     [
@@ -96,24 +96,24 @@
     ],
     [
       "Chartboost",
-      7291,
+      5457,
       0
     ]
   ],
   "nuget_tree": [
     [
       "AdMob",
-      19391,
+      19392,
       0
     ],
     [
       "Google Bidding",
-      19230,
+      19231,
       0
     ],
     [
       "Mediation SDK",
-      17593,
+      17622,
       1
     ],
     [
@@ -123,17 +123,17 @@
     ],
     [
       "Pangle",
-      9272,
+      9273,
       0
     ],
     [
       "BidMachine",
-      8121,
+      8133,
       0
     ],
     [
       "AppLovin",
-      7958,
+      7960,
       0
     ],
     [
@@ -153,7 +153,7 @@
     ],
     [
       "Verve",
-      5202,
+      5204,
       0
     ],
     [
