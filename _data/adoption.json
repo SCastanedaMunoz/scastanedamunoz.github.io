@@ -1,102 +1,102 @@
 {
-  "updated": "2026-10-05",
+  "updated": "2026-10-12",
   "packages": 26,
-  "total_display": "833K+",
-  "npm_display": "610K+",
+  "total_display": "1011K+",
+  "npm_display": "788K+",
   "nuget_display": "222K+",
-  "npm_adapters_display": "451,532",
+  "npm_adapters_display": "628,757",
   "npm_extras_display": "~126K",
   "nuget_adapters_display": "122,824",
   "nuget_extras_display": "~82K",
   "npm_tree": [
     [
       "MobileFuse",
-      273865,
-      0
-    ],
-    [
-      "Mediation SDK",
-      33272,
-      1
-    ],
-    [
-      "AdMob",
-      16136,
-      0
-    ],
-    [
-      "Google Bidding",
-      15464,
-      0
-    ],
-    [
-      "ironSource",
-      13434,
-      0
-    ],
-    [
-      "Pangle",
-      12361,
-      0
-    ],
-    [
-      "Verve",
-      11889,
-      0
-    ],
-    [
-      "Unity Ads",
-      11881,
-      0
-    ],
-    [
-      "Vungle",
-      11812,
-      0
-    ],
-    [
-      "AppLovin",
-      11463,
-      0
-    ],
-    [
-      "InMobi",
-      11446,
-      0
-    ],
-    [
-      "Mintegral",
-      11353,
-      0
-    ],
-    [
-      "Amazon APS",
-      10620,
-      0
-    ],
-    [
-      "Meta",
-      9924,
-      0
-    ],
-    [
-      "Digital Turbine",
-      8959,
-      0
-    ],
-    [
-      "HyprMX",
-      8153,
+      290077,
       0
     ],
     [
       "BidMachine",
-      7315,
+      157799,
+      0
+    ],
+    [
+      "Mediation SDK",
+      33697,
+      1
+    ],
+    [
+      "AdMob",
+      16253,
+      0
+    ],
+    [
+      "Google Bidding",
+      15663,
       0
     ],
     [
       "Chartboost",
-      5457,
+      14904,
+      0
+    ],
+    [
+      "ironSource",
+      13463,
+      0
+    ],
+    [
+      "Pangle",
+      12411,
+      0
+    ],
+    [
+      "Unity Ads",
+      12218,
+      0
+    ],
+    [
+      "Verve",
+      11914,
+      0
+    ],
+    [
+      "Vungle",
+      11852,
+      0
+    ],
+    [
+      "InMobi",
+      11617,
+      0
+    ],
+    [
+      "AppLovin",
+      11485,
+      0
+    ],
+    [
+      "Mintegral",
+      11365,
+      0
+    ],
+    [
+      "Amazon APS",
+      10630,
+      0
+    ],
+    [
+      "Meta",
+      9956,
+      0
+    ],
+    [
+      "Digital Turbine",
+      8994,
+      0
+    ],
+    [
+      "HyprMX",
+      8156,
       0
     ]
   ],
