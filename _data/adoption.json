@@ -1,194 +1,194 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-11-02",
   "packages": 26,
-  "total_display": "1042K+",
-  "npm_display": "800K+",
-  "nuget_display": "242K+",
-  "npm_adapters_display": "639,608",
-  "npm_extras_display": "~126K",
-  "nuget_adapters_display": "135,388",
-  "nuget_extras_display": "~88K",
+  "total_display": "1044K+",
+  "npm_display": "799K+",
+  "nuget_display": "245K+",
+  "npm_adapters_display": "636,745",
+  "npm_extras_display": "~128K",
+  "nuget_adapters_display": "137,768",
+  "nuget_extras_display": "~89K",
   "npm_tree": [
     [
       "MobileFuse",
-      290120,
+      290213,
       0
     ],
     [
       "BidMachine",
-      167483,
+      167553,
       0
     ],
     [
       "Mediation SDK",
-      34009,
+      34687,
       1
     ],
     [
       "AdMob",
-      16470,
+      17163,
       0
     ],
     [
       "Google Bidding",
-      15756,
-      0
-    ],
-    [
-      "Chartboost",
-      15130,
+      16116,
       0
     ],
     [
       "ironSource",
-      13508,
+      13799,
       0
     ],
     [
       "Pangle",
-      12475,
+      12701,
       0
     ],
     [
       "Unity Ads",
-      12277,
-      0
-    ],
-    [
-      "Verve",
-      11942,
-      0
-    ],
-    [
-      "Vungle",
-      11899,
-      0
-    ],
-    [
-      "InMobi",
-      11666,
+      12421,
       0
     ],
     [
       "Mintegral",
-      11579,
+      12210,
+      0
+    ],
+    [
+      "InMobi",
+      12129,
+      0
+    ],
+    [
+      "Vungle",
+      12069,
+      0
+    ],
+    [
+      "Verve",
+      11997,
       0
     ],
     [
       "AppLovin",
-      11505,
+      11687,
       0
     ],
     [
       "Amazon APS",
-      10650,
+      11003,
       0
     ],
     [
       "Meta",
-      9978,
+      10018,
       0
     ],
     [
       "Digital Turbine",
-      9011,
+      9030,
+      0
+    ],
+    [
+      "Chartboost",
+      8463,
       0
     ],
     [
       "HyprMX",
-      8159,
+      8173,
       0
     ]
   ],
   "nuget_tree": [
     [
       "AdMob",
-      21817,
+      22197,
       0
     ],
     [
       "Google Bidding",
-      21610,
+      22009,
       0
     ],
     [
       "Mediation SDK",
-      18727,
+      18813,
       1
     ],
     [
       "ironSource",
-      12311,
+      12519,
       0
     ],
     [
       "Pangle",
-      10160,
+      10348,
       0
     ],
     [
       "BidMachine",
-      8871,
+      9031,
       0
     ],
     [
       "AppLovin",
-      8531,
+      8662,
       0
     ],
     [
       "Chartboost",
-      6745,
+      6873,
       0
     ],
     [
       "Amazon APS",
-      6271,
+      6376,
       0
     ],
     [
       "Unity Ads",
-      6017,
+      6158,
       0
     ],
     [
       "InMobi",
-      5870,
+      5979,
       0
     ],
     [
       "Verve",
-      5731,
+      5823,
       0
     ],
     [
       "Meta",
-      5582,
+      5683,
       0
     ],
     [
       "Vungle",
-      4890,
+      4952,
       0
     ],
     [
       "MobileFuse",
-      4771,
+      4849,
       0
     ],
     [
       "Mintegral",
-      3519,
+      3570,
       0
     ],
     [
       "Digital Turbine",
-      1968,
+      2005,
       0
     ],
     [
       "HyprMX",
-      724,
+      734,
       0
     ]
   ]
